@@ -13,7 +13,10 @@ class HintedTextField extends StatelessWidget {
     this.fillColor,
     this.textColor = Colors.black, //TODO: Change later
     this.hintColor = Colors.grey, //TODO: Change later
+    this.contentPadding,
     this.inputFormatters,
+    this.fontSize,
+    this.isDense = true,
     this.validator,
     this.isObscure = false,
   });
@@ -24,8 +27,11 @@ class HintedTextField extends StatelessWidget {
   final Color? fillColor;
   final Color hintColor;
   final Color textColor;
+  final bool isDense;
+  final EdgeInsets? contentPadding;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
+  final double? fontSize;
   final bool isObscure;
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,7 @@ class HintedTextField extends StatelessWidget {
       inputFormatters: inputFormatters,
       validator: validator,
       style: TextStyle(
-        fontSize: 22.sp,
+        fontSize: fontSize ?? 22.sp,
         color: textColor,
       ),
       controller: controller,
@@ -43,11 +49,11 @@ class HintedTextField extends StatelessWidget {
         // counterText: containsLetterCount ? null : '',
         hintText: hintText,
         hintStyle: TextStyle(
-          fontSize: 22.sp,
+          fontSize: fontSize ?? 22.sp,
           color: hintColor,
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 18.h),
-        isDense: true,
+        contentPadding: contentPadding ?? EdgeInsets.symmetric(vertical: 18.h),
+        isDense: isDense,
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent, width: 2.w),
           borderRadius: BorderRadius.circular(14.r),

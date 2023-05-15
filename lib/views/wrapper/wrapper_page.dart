@@ -14,6 +14,7 @@ class Wrapper extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       splitScreenMode: false,
+      useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
           title: 'Qalam & Noor',

@@ -165,9 +165,7 @@ class StudentListPage extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
-                                  .copyWith(
-                                    color: Colors.white,
-                                  ),
+                                  .copyWith(color: Colors.white),
                               overflow: TextOverflow.ellipsis,
                             ),
                             AddVerticalSpacing(value: 5.h),

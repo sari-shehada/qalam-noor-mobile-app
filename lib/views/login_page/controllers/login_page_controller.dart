@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:qalam_noor_parents/controllers/auth_controller.dart';
 import 'package:qalam_noor_parents/helpers/shared_prefs_helper.dart';
 import 'package:qalam_noor_parents/models/agendas/families.dart';
-import 'package:qalam_noor_parents/models/user_model.dart';
 import 'package:qalam_noor_parents/shared/global_params.dart';
 import 'package:qalam_noor_parents/shared/item_or.dart';
 import 'package:qalam_noor_parents/views/bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';

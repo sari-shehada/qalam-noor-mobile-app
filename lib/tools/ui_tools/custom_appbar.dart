@@ -1,34 +1,43 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.title,
     this.backButtonEnabled = true,
     this.actions,
+    this.isShadowed = true,
+    this.backgroundColor = Colors.white,
+    this.titleColor,
   });
 
   final String title;
   final bool backButtonEnabled;
   final List<Widget>? actions;
-
+  final bool isShadowed;
+  final Color backgroundColor;
+  final Color? titleColor;
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: Container(
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.1),
-            spreadRadius: 1,
-            offset: const Offset(-1, 2),
-            blurRadius: 2,
-          ),
-        ]),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          boxShadow: isShadowed
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.1),
+                    spreadRadius: 1,
+                    offset: const Offset(-1, 2),
+                    blurRadius: 2,
+                  ),
+                ]
+              : null,
+        ),
         child: Column(
           children: [
             SizedBox(
@@ -39,12 +48,18 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Text(
-                      title,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(fontSize: 19.7.sp),
+                    SizedBox(
+                      width: 250.w,
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(fontSize: 19.7.sp, color: titleColor),
+                      ),
                     ),
                     backButtonEnabled
                         ? Positioned(

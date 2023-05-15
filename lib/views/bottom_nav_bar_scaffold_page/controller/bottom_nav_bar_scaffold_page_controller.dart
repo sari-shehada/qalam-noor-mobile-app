@@ -24,7 +24,7 @@ class BottomNavBarScaffoldPageController extends GetxController {
         selectedWidget.value = const HomePage();
         break;
       case 1:
-        selectedWidget.value = const InboxPage();
+        selectedWidget.value = const InboxPage1();
         break;
       case 2:
         selectedWidget.value = const SettingsPage();

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:qalam_noor_parents/helpers/fonts_helper.dart';
-import 'package:qalam_noor_parents/helpers/shared_prefs_helper.dart';
-import 'package:qalam_noor_parents/helpers/styles_helper.dart';
-import 'package:qalam_noor_parents/models/agendas/student.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/custom_appbar.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/custom_scaffold.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
-import 'package:qalam_noor_parents/views/login_page/login_page.dart';
-import 'package:qalam_noor_parents/views/student_list_page/controller/student_list_page_controller.dart';
+import '../../helpers/fonts_helper.dart';
+import '../../helpers/shared_prefs_helper.dart';
+import '../../helpers/styles_helper.dart';
+import '../../models/agendas/student.dart';
+import '../../tools/ui_tools/buttons.dart';
+import '../../tools/ui_tools/custom_appbar.dart';
+import '../../tools/ui_tools/custom_scaffold.dart';
+import '../../tools/ui_tools/ui_tools.dart';
+import '../login_page/login_page.dart';
+import 'controller/student_list_page_controller.dart';
 
 class StudentListPage extends StatelessWidget {
   const StudentListPage({super.key});

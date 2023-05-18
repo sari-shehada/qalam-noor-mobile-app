@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/helpers/routes_helper.dart';
-import 'package:qalam_noor_parents/views/loader_page/loader_page.dart';
+import '../../helpers/routes_helper.dart';
+import '../loader_page/loader_page.dart';
 
 import '../../helpers/theme_helper.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/models/enums.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/text_fields.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
-import 'package:qalam_noor_parents/views/chat_page/controllers/chat_page_controller.dart';
-import 'package:qalam_noor_parents/views/chat_page/widgets/chat_bubble.dart';
+import '../../models/enums.dart';
+import '../../tools/ui_tools/text_fields.dart';
+import '../../tools/ui_tools/ui_tools.dart';
+import 'controllers/chat_page_controller.dart';
+import 'widgets/chat_bubble.dart';
 import '../../tools/ui_tools/custom_appbar.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
 

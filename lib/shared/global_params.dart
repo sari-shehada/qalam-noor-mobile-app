@@ -1,5 +1,5 @@
-import 'package:qalam_noor_parents/models/agendas/families.dart';
-import 'package:qalam_noor_parents/models/agendas/student.dart';
+import '../models/agendas/families.dart';
+import '../models/agendas/student.dart';
 
 abstract class GlobalParams {
   static late Family currentUser;

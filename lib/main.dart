@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qalam_noor_parents/views/wrapper/wrapper_page.dart';
+import 'views/wrapper/wrapper_page.dart';
 
 import 'helpers/shared_prefs_helper.dart';
 

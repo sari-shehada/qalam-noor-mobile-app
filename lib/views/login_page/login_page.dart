@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/text_fields.dart';
-import 'package:qalam_noor_parents/views/login_page/controllers/login_page_controller.dart';
+import '../../tools/ui_tools/buttons.dart';
+import '../../tools/ui_tools/text_fields.dart';
+import 'controllers/login_page_controller.dart';
 
 import '../../helpers/assets_helper.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';

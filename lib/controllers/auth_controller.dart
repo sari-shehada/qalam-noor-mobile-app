@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:qalam_noor_parents/models/agendas/families.dart';
-import 'package:qalam_noor_parents/shared/item_or.dart';
-import 'package:qalam_noor_parents/tools/logic_tools/network_service.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/agendas/families.dart';
+import '../shared/item_or.dart';
+import '../tools/logic_tools/network_service.dart';
 
 class AuthController {
   static AuthController get instance => AuthController();

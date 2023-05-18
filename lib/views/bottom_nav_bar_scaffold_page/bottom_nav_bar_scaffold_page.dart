@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/custom_scaffold.dart';
-import 'package:qalam_noor_parents/views/bottom_nav_bar_scaffold_page/controller/bottom_nav_bar_scaffold_page_controller.dart';
 
 import '../../tools/ui_tools/custom_bottom_nav_bar.dart';
+import '../../tools/ui_tools/custom_scaffold.dart';
+import 'controller/bottom_nav_bar_scaffold_page_controller.dart';
 
 class BottomNavBarScaffoldPage extends StatelessWidget {
   static const String routeName = '/bottomNavBarScaffoldPage';

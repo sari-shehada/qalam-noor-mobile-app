@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/models/conversations/conversation.dart';
+
+import '../../../models/conversations/conversation.dart';
 
 class ChatPageController extends GetxController {
   final Conversation conversation;

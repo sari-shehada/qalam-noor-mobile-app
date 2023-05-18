@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/views/home_page/home_page.dart';
-import 'package:qalam_noor_parents/views/inbox_page/inbox_page.dart';
-import 'package:qalam_noor_parents/views/settings_page/settings_page.dart';
+import '../../home_page/home_page.dart';
+import '../../inbox_page/inbox_page.dart';
+import '../../settings_page/settings_page.dart';
 
 class BottomNavBarScaffoldPageController extends GetxController {
   RxInt index = 0.obs;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/shared/global_params.dart';
-import 'package:qalam_noor_parents/tools/dialogs_services/open_dialog_service.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
+import '../../shared/global_params.dart';
+import '../../tools/dialogs_services/open_dialog_service.dart';
+import '../../tools/ui_tools/buttons.dart';
+import '../../tools/ui_tools/ui_tools.dart';
 
 import '../../helpers/shared_prefs_helper.dart';
 import '../../tools/ui_tools/custom_appbar.dart';

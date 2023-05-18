@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:qalam_noor_parents/controllers/auth_controller.dart';
-import 'package:qalam_noor_parents/controllers/student_controller.dart';
-import 'package:qalam_noor_parents/helpers/assets_helper.dart';
-import 'package:qalam_noor_parents/helpers/shared_prefs_helper.dart';
+import '../../controllers/auth_controller.dart';
+import '../../controllers/student_controller.dart';
+import '../../helpers/assets_helper.dart';
+import '../../helpers/shared_prefs_helper.dart';
 
-import 'package:qalam_noor_parents/shared/global_params.dart';
-import 'package:qalam_noor_parents/tools/dialogs_services/snack_bar_service.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/custom_scaffold.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
-import 'package:qalam_noor_parents/views/login_page/login_page.dart';
-import 'package:qalam_noor_parents/views/student_list_page/student_list_page.dart';
+import '../../shared/global_params.dart';
+import '../../tools/dialogs_services/snack_bar_service.dart';
+import '../../tools/ui_tools/custom_scaffold.dart';
+import '../../tools/ui_tools/ui_tools.dart';
+import '../login_page/login_page.dart';
+import '../student_list_page/student_list_page.dart';
 
 import '../../models/agendas/families.dart';
 import '../../models/agendas/student.dart';

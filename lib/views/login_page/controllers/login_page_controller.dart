@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/controllers/auth_controller.dart';
-import 'package:qalam_noor_parents/helpers/shared_prefs_helper.dart';
-import 'package:qalam_noor_parents/models/agendas/families.dart';
-import 'package:qalam_noor_parents/shared/global_params.dart';
-import 'package:qalam_noor_parents/shared/item_or.dart';
-import 'package:qalam_noor_parents/views/bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
+import '../../../controllers/auth_controller.dart';
+import '../../../helpers/shared_prefs_helper.dart';
+import '../../../models/agendas/families.dart';
+import '../../../shared/global_params.dart';
+import '../../../shared/item_or.dart';
+import '../../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
 
 import '../../../controllers/student_controller.dart';
 import '../../../models/agendas/student.dart';

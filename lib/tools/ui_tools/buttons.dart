@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:qalam_noor_parents/helpers/fonts_helper.dart';
-import 'package:qalam_noor_parents/helpers/styles_helper.dart';
+import '../../helpers/fonts_helper.dart';
+import '../../helpers/styles_helper.dart';
 
 import '../../helpers/theme_helper.dart';
 

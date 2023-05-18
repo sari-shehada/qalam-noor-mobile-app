@@ -1,6 +1,6 @@
-import 'package:qalam_noor_parents/models/agendas/student.dart';
-import 'package:qalam_noor_parents/shared/global_params.dart';
-import 'package:qalam_noor_parents/tools/logic_tools/network_service.dart';
+import '../models/agendas/student.dart';
+import '../shared/global_params.dart';
+import '../tools/logic_tools/network_service.dart';
 
 class StudentController {
   static StudentController get instance => StudentController();

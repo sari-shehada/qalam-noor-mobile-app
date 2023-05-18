@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:qalam_noor_parents/shared/global_params.dart';
 import 'package:qalam_noor_parents/tools/dialogs_services/open_dialog_service.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
+import 'package:qalam_noor_parents/tools/ui_tools/text_fields.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
 
 import '../../helpers/shared_prefs_helper.dart';
@@ -188,9 +189,10 @@ class _FamilyProfileCard extends StatelessWidget {
               height: 45.h,
               width: 150.w,
               onTap: () async {
-                await openDialog(
-                  onCancel: () {},
-                  onConfirm: () {},
+                DialogService.openConfirmationDialog(
+                  title: 'Test Title',
+                  // showCloseButton: false,
+                  size: const Size(double.infinity, 700),
                 );
               },
               child: Text(

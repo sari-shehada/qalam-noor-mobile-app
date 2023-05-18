@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -24,7 +26,10 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AddVerticalSpacing(
-                value: MediaQuery.of(context).viewPadding.top * 1.7),
+              value: Platform.isIOS
+                  ? MediaQuery.of(context).viewPadding.top * 1.7
+                  : 100.h,
+            ),
             Image.asset(
               AssetsHelper.appLogoPath,
               height: 220.h,

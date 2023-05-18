@@ -1,14 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
+@immutable
 class Family {
-  int id;
-  String userName;
-  String password;
-  int fatherId;
-  int motherId;
-  int? responsiblePersonId;
-  Family({
+  const Family({
     required this.id,
     required this.userName,
     required this.password,
@@ -16,6 +13,29 @@ class Family {
     required this.motherId,
     this.responsiblePersonId,
   });
+
+  factory Family.fromMap(Map<String, dynamic> map) {
+    return Family(
+      id: map['id'] as int,
+      userName: map['userName'] as String,
+      password: map['password'] as String,
+      fatherId: map['fatherId'] as int,
+      motherId: map['motherId'] as int,
+      responsiblePersonId: map['responsiblePersonId'] != null
+          ? map['responsiblePersonId'] as int
+          : null,
+    );
+  }
+
+  factory Family.fromJson(String source) =>
+      Family.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  final int id;
+  final String userName;
+  final String password;
+  final int fatherId;
+  final int motherId;
+  final int? responsiblePersonId;
 
   Family copyWith({
     int? id,
@@ -46,23 +66,7 @@ class Family {
     };
   }
 
-  factory Family.fromMap(Map<String, dynamic> map) {
-    return Family(
-      id: map['id'] as int,
-      userName: map['userName'] as String,
-      password: map['password'] as String,
-      fatherId: map['fatherId'] as int,
-      motherId: map['motherId'] as int,
-      responsiblePersonId: map['responsiblePersonId'] != null
-          ? map['responsiblePersonId'] as int
-          : null,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory Family.fromJson(String source) =>
-      Family.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -71,7 +75,9 @@ class Family {
 
   @override
   bool operator ==(covariant Family other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.userName == userName &&

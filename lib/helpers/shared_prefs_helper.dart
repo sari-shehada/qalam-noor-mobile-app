@@ -11,20 +11,20 @@ class SharedPrefsHelper {
   }
 
   //Setters
-  Future<void> setLoginStatus(bool val) async {
+  Future<void> setLoginStatus({required bool val}) async {
     await spInstance.setBool(SharedPrefsKeys.loginStatusKey, val);
   }
 
   Future<bool> setUsername(String username) async {
-    return await spInstance.setString(SharedPrefsKeys.usernameKey, username);
+    return spInstance.setString(SharedPrefsKeys.usernameKey, username);
   }
 
   Future<bool> setPassword(String password) async {
-    return await spInstance.setString(SharedPrefsKeys.passwordKey, password);
+    return spInstance.setString(SharedPrefsKeys.passwordKey, password);
   }
 
   Future<bool> setCurrentUserId(int studentId) async {
-    return await spInstance.setInt(
+    return spInstance.setInt(
       SharedPrefsKeys.currentStudentIdKey,
       studentId,
     );

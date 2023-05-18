@@ -51,7 +51,7 @@ class LoginPageController extends GetxController {
     if (loginResult.didSucceed) {
       GlobalParams.currentUser = loginResult.item!;
 
-      await SharedPrefsHelper.instance.setLoginStatus(true);
+      await SharedPrefsHelper.instance.setLoginStatus(val: true);
       await SharedPrefsHelper.instance.setUsername(username);
       await SharedPrefsHelper.instance.setPassword(password);
       final int? currentStudentId =

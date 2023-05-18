@@ -1,28 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import '../enums.dart';
 
+@immutable
 class Father {
-  final int id;
-  final String firstName;
-  final String lastName;
-  final String fatherName;
-  final String motherName;
-  final String career;
-  final String placeOfResidence;
-  final int tieNumber;
-  final String tiePlace;
-  final String placeOfBirth;
-  final DateTime dateOfBirth;
-  String civilRegisterSecretary;
-  //enum
-  final Religion religion;
-  //enum
-  final EducationalStatus educationalStatus;
-  final String phoneNumber;
-  final String permanentAddress;
-  Father({
+  const Father({
     required this.id,
     required this.firstName,
     required this.lastName,
@@ -40,6 +25,51 @@ class Father {
     required this.phoneNumber,
     required this.permanentAddress,
   });
+
+  factory Father.fromMap(Map<String, dynamic> map) {
+    return Father(
+      id: map['id'] as int,
+      firstName: map['firstName'] as String,
+      lastName: map['lastName'] as String,
+      fatherName: map['fatherName'] as String,
+      motherName: map['motherName'] as String,
+      career: map['career'] as String,
+      placeOfResidence: map['placeOfResidence'] as String,
+      tieNumber: map['tieNumber'] as int,
+      tiePlace: map['tiePlace'] as String,
+      placeOfBirth: map['placeOfBirth'] as String,
+      dateOfBirth:
+          DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] as int),
+      civilRegisterSecretary: map['civilRegisterSecretary'] as String,
+      religion: Religion.values[map['religion'] as int],
+      educationalStatus:
+          EducationalStatus.values[map['educationalStatus'] as int],
+      phoneNumber: map['phoneNumber'] as String,
+      permanentAddress: map['permanentAddress'] as String,
+    );
+  }
+
+  factory Father.fromJson(String source) =>
+      Father.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  final int id;
+  final String firstName;
+  final String lastName;
+  final String fatherName;
+  final String motherName;
+  final String career;
+  final String placeOfResidence;
+  final int tieNumber;
+  final String tiePlace;
+  final String placeOfBirth;
+  final DateTime dateOfBirth;
+  final String civilRegisterSecretary;
+  //enum
+  final Religion religion;
+  //enum
+  final EducationalStatus educationalStatus;
+  final String phoneNumber;
+  final String permanentAddress;
 
   Father copyWith({
     int? id,
@@ -101,33 +131,7 @@ class Father {
     };
   }
 
-  factory Father.fromMap(Map<String, dynamic> map) {
-    return Father(
-      id: map['id'] as int,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      fatherName: map['fatherName'] as String,
-      motherName: map['motherName'] as String,
-      career: map['career'] as String,
-      placeOfResidence: map['placeOfResidence'] as String,
-      tieNumber: map['tieNumber'] as int,
-      tiePlace: map['tiePlace'] as String,
-      placeOfBirth: map['placeOfBirth'] as String,
-      dateOfBirth:
-          DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] as int),
-      civilRegisterSecretary: map['civilRegisterSecretary'] as String,
-      religion: Religion.values[map['religion'] as int],
-      educationalStatus:
-          EducationalStatus.values[map['educationalStatus'] as int],
-      phoneNumber: map['phoneNumber'] as String,
-      permanentAddress: map['permanentAddress'] as String,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory Father.fromJson(String source) =>
-      Father.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -136,7 +140,9 @@ class Father {
 
   @override
   bool operator ==(covariant Father other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.firstName == firstName &&

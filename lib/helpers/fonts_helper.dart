@@ -21,7 +21,7 @@ class FontsHelper {
         fontSize: 45.sp,
         color: lightColorScheme.primary,
         letterSpacing: 0.sp,
-        height: (52 / 45));
+        height: 52 / 45);
   }
 
   static TextStyle displaySmall() {

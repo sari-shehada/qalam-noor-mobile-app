@@ -3,13 +3,14 @@ import '../shared/global_params.dart';
 import '../tools/logic_tools/network_service.dart';
 
 class StudentController {
-  static StudentController get instance => StudentController();
+  const StudentController();
+  static const StudentController instance = StudentController();
 
   String get _controllerName => 'studentController/';
 
   Future<List<Student>> getStudentsByFamilyId({int? familyId}) async {
     final pickedFamilyID = familyId ?? GlobalParams.currentUser.id;
-    String endPoint =
+    final String endPoint =
         '${_controllerName}GetStudentsByFamilyId?familyId=$pickedFamilyID';
 
     return HttpService.getParsed<List<Student>, List<dynamic>>(
@@ -21,7 +22,7 @@ class StudentController {
   }
 
   Future<Student> getStudentById({required int studentId}) async {
-    String endPoint = '${_controllerName}GetStudentById?id=$studentId';
+    final String endPoint = '${_controllerName}GetStudentById?id=$studentId';
 
     return HttpService.getParsed<Student, Map<String, dynamic>>(
       url: endPoint,

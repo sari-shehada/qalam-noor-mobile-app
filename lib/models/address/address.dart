@@ -1,12 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
+@immutable
 class Address {
   final int id;
   final String name;
   final String? details;
   final int areaId;
-  Address({
+  const Address({
     required this.id,
     required this.name,
     this.details,
@@ -57,7 +60,9 @@ class Address {
 
   @override
   bool operator ==(covariant Address other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.name == name &&

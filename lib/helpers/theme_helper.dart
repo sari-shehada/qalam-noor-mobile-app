@@ -25,7 +25,7 @@ abstract class ThemesHelper {
         fontSize: 45.sp,
         color: lightColorScheme.primary,
         letterSpacing: 0.sp,
-        height: (52 / 45),
+        height: 52 / 45,
       ),
       displaySmall: TextStyle(
         fontWeight: FontWeight.w500,
@@ -144,7 +144,7 @@ abstract class ThemesHelper {
         fontSize: 45.sp,
         color: darkColorScheme.primary,
         letterSpacing: 0.sp,
-        height: (52 / 45),
+        height: 52 / 45,
       ),
       displaySmall: TextStyle(
         fontWeight: FontWeight.w500,

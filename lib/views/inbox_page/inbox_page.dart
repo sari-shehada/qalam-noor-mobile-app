@@ -78,8 +78,8 @@ class _ConversationCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.r),
         ),
-        onTap: () {
-          Get.toNamed(
+        onTap: () async {
+          await Get.toNamed<void>(
             ChatPage.routeName,
             arguments: ChatPageController(conversation: conversation),
           );

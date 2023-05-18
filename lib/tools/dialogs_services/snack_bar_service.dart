@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../helpers/theme_helper.dart';
 import '../ui_tools/ui_tools.dart';
 
-class SnackbarService {
+class SnackbarService extends GetxService {
   static void showErrorSnackBar(
       {required String title, required String message}) {
     Get.showSnackbar(

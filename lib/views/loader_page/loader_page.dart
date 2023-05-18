@@ -20,8 +20,8 @@ import '../../shared/item_or.dart';
 import '../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
 
 class LoaderPage extends StatelessWidget {
-  static const String routeName = '/loaderPage';
   const LoaderPage({super.key});
+  static const String routeName = '/loaderPage';
 
   @override
   Widget build(BuildContext context) {
@@ -56,25 +56,25 @@ class LoaderPage extends StatelessWidget {
   }
 
   Future<void> _handleNavigationAccordingToLoginStatus() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future<void>.delayed(const Duration(seconds: 2));
     //If User previously logged in
     if (!SharedPrefsHelper.instance.isLoggedIn()) {
-      Get.offAllNamed(LoginPage.routeName);
+      await Get.offAllNamed<void>(LoginPage.routeName);
 
       return;
     }
-    String? username = SharedPrefsHelper.instance.getUsername();
-    String? password = SharedPrefsHelper.instance.getPassword();
+    final String? username = SharedPrefsHelper.instance.getUsername();
+    final String? password = SharedPrefsHelper.instance.getPassword();
     if (username == null) {
       SnackbarService.showErrorSnackBar(
         title: 'Login Failed',
         message: 'Username Failed To Load',
       );
-      Get.offAllNamed(LoginPage.routeName);
+      await Get.offAllNamed<void>(LoginPage.routeName);
       return;
     }
     if (password == null) {
-      Get.offAllNamed(LoginPage.routeName);
+      await Get.offAllNamed<void>(LoginPage.routeName);
 
       SnackbarService.showErrorSnackBar(
         title: 'Login Failed',
@@ -83,31 +83,28 @@ class LoaderPage extends StatelessWidget {
       return;
     }
 
-    ItemOr<Family?, String> loginResult = await AuthController.instance
+    final ItemOr<Family?, String> loginResult = await AuthController.instance
         .loginUserByCredentials(username: username, password: password);
     if (!loginResult.didSucceed) {
       SnackbarService.showErrorSnackBar(
         title: 'Login Failed',
         message: loginResult.other,
       );
-      SharedPrefsHelper().clearSharedPrefs();
-      Get.offAllNamed(LoginPage.routeName);
+      await SharedPrefsHelper().clearSharedPrefs();
+      await Get.offAllNamed<void>(LoginPage.routeName);
       return;
     }
 
     GlobalParams.currentUser = loginResult.item!;
-    int? currentStudentId = SharedPrefsHelper.instance.getCurrentStudentId();
+    final int? currentStudentId =
+        SharedPrefsHelper.instance.getCurrentStudentId();
     if (currentStudentId == null) {
-      Get.offAllNamed(StudentListPage.routeName);
+      await Get.offAllNamed<void>(StudentListPage.routeName);
       return;
     }
-    Student student = await StudentController.instance
+    final Student student = await StudentController.instance
         .getStudentById(studentId: currentStudentId);
     GlobalParams.selectedStudent = student;
-    print(student.toString());
-    Get.offAllNamed(BottomNavBarScaffoldPage.routeName);
-    //Get Username and password
-    //try login with username and password
-    //if failed to login redirect to login page and clear shared preferences
+    await Get.offAllNamed<void>(BottomNavBarScaffoldPage.routeName);
   }
 }

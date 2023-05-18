@@ -32,7 +32,7 @@ class LoginPageController extends GetxController {
   }
 
   Future<void> executeLogin() async {
-    String? validationMessage = _validateFields();
+    final String? validationMessage = _validateFields();
 
     if (validationMessage != null) {
       SnackbarService.showErrorSnackBar(
@@ -42,9 +42,9 @@ class LoginPageController extends GetxController {
       return;
     }
     loginButtonStatus.value = CustomButtonStatus.processing;
-    String username = usernameTxtEditingCtrl.text.trim();
-    String password = passwordTxtEditingCtrl.text.trim();
-    ItemOr<Family?, String> loginResult = await AuthController.instance
+    final String username = usernameTxtEditingCtrl.text.trim();
+    final String password = passwordTxtEditingCtrl.text.trim();
+    final ItemOr<Family?, String> loginResult = await AuthController.instance
         .loginUserByCredentials(username: username, password: password);
     loginButtonStatus.value = CustomButtonStatus.enabled;
 
@@ -54,15 +54,16 @@ class LoginPageController extends GetxController {
       await SharedPrefsHelper.instance.setLoginStatus(true);
       await SharedPrefsHelper.instance.setUsername(username);
       await SharedPrefsHelper.instance.setPassword(password);
-      int? currentStudentId = SharedPrefsHelper.instance.getCurrentStudentId();
+      final int? currentStudentId =
+          SharedPrefsHelper.instance.getCurrentStudentId();
       if (currentStudentId == null) {
-        Get.offAllNamed(StudentListPage.routeName);
+        await Get.offAllNamed<void>(StudentListPage.routeName);
         return;
       }
-      Student student = await StudentController.instance
+      final Student student = await StudentController.instance
           .getStudentById(studentId: currentStudentId);
       GlobalParams.selectedStudent = student;
-      Get.offAllNamed(BottomNavBarScaffoldPage.routeName);
+      await Get.offAllNamed<void>(BottomNavBarScaffoldPage.routeName);
       return;
     }
     SnackbarService.showErrorSnackBar(

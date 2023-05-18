@@ -61,29 +61,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                             .copyWith(fontSize: 19.7.sp, color: titleColor),
                       ),
                     ),
-                    backButtonEnabled
-                        ? Positioned(
-                            right: 0,
-                            child: IconButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              icon: Icon(
-                                Icons.chevron_left,
-                                color: Theme.of(context).colorScheme.primary,
-                                size: 30.sp,
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                    actions != null
-                        ? Positioned(
-                            left: 0,
-                            child: Row(
-                              children: actions!,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
+                    if (backButtonEnabled)
+                      Positioned(
+                        right: 0,
+                        child: IconButton(
+                          onPressed: Get.back<void>,
+                          icon: Icon(
+                            Icons.chevron_left,
+                            color: Theme.of(context).colorScheme.primary,
+                            size: 30.sp,
+                          ),
+                        ),
+                      ),
+                    if (actions != null)
+                      Positioned(
+                        left: 0,
+                        child: Row(
+                          children: actions!,
+                        ),
+                      ),
                   ],
                 ),
               ),

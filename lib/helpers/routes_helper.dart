@@ -5,8 +5,11 @@ import 'package:qalam_noor_parents/views/loader_page/loader_page.dart';
 import 'package:qalam_noor_parents/views/login_page/login_page.dart';
 import 'package:qalam_noor_parents/views/student_list_page/student_list_page.dart';
 
-abstract class RoutesHelper {
-  static List<GetPage> get routes => <GetPage>[
+class RoutesHelper {
+  const RoutesHelper();
+  static const instance = RoutesHelper();
+
+  List<GetPage<dynamic>> get routes => <GetPage<dynamic>>[
         GetPage(
           name: LoaderPage.routeName,
           page: () => const LoaderPage(),

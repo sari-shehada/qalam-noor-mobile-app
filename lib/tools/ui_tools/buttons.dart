@@ -6,7 +6,7 @@ import 'package:qalam_noor_parents/helpers/styles_helper.dart';
 
 import '../../helpers/theme_helper.dart';
 
-class CustomFilledButton extends StatelessWidget {
+class CustomFilledButton<T> extends StatelessWidget {
   const CustomFilledButton({
     super.key,
     this.labelColor,
@@ -15,7 +15,6 @@ class CustomFilledButton extends StatelessWidget {
     this.height,
     this.width = double.infinity,
     this.buttonStatus,
-    //TODO:
     this.loadingColor = Colors.white,
     this.useShadow = true,
     required this.child,
@@ -28,25 +27,25 @@ class CustomFilledButton extends StatelessWidget {
   final double width;
   final Rx<CustomButtonStatus>? buttonStatus;
   final Color loadingColor;
-  final dynamic child;
+  final T child;
   final bool useShadow;
+
   @override
   Widget build(BuildContext context) {
+    final shadow = [
+      BoxShadow(
+        offset: Offset(0.w, 4.h),
+        blurRadius: 12.r,
+        color: Colors.black.withOpacity(.08),
+      ),
+    ];
     if (buttonStatus == null) {
       return Container(
         height: height ?? 58.h,
         width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(StylesHelper.globalBorderRadius),
-          boxShadow: useShadow == true
-              ? [
-                  BoxShadow(
-                    offset: Offset(0.w, 4.h),
-                    blurRadius: 12.r,
-                    color: Colors.black.withOpacity(.08),
-                  ),
-                ]
-              : [],
+          boxShadow: !useShadow ? null : shadow,
         ),
         child: Material(
           color: backgroundColor ?? Get.theme.colorScheme.primary,
@@ -57,7 +56,7 @@ class CustomFilledButton extends StatelessWidget {
             borderRadius:
                 BorderRadius.circular(StylesHelper.globalBorderRadius),
             child: Center(
-              child: buildChild(),
+              child: _buildChild(),
             ),
           ),
         ),
@@ -78,7 +77,6 @@ class CustomFilledButton extends StatelessWidget {
       ),
       child: Material(
         color: backgroundColor ?? Get.theme.colorScheme.primary,
-        elevation: 0,
         borderRadius: BorderRadius.circular(StylesHelper.globalBorderRadius),
         child: Obx(
           () {
@@ -90,7 +88,7 @@ class CustomFilledButton extends StatelessWidget {
                     borderRadius:
                         BorderRadius.circular(StylesHelper.globalBorderRadius),
                     child: Center(
-                      child: buildChild(),
+                      child: _buildChild(),
                     ),
                   );
                 }
@@ -100,7 +98,7 @@ class CustomFilledButton extends StatelessWidget {
                     borderRadius:
                         BorderRadius.circular(StylesHelper.globalBorderRadius),
                     child: Center(
-                      child: buildChild(),
+                      child: _buildChild(),
                     ),
                   );
                 }
@@ -123,12 +121,13 @@ class CustomFilledButton extends StatelessWidget {
     );
   }
 
-  buildChild() {
+  Widget _buildChild() {
     assert(child is String || child is Widget,
-        'Expected a widget or string for the child of the callToActionButton');
+        'Expected a widget or string for the child of the CustomFilledButton but got <${child.runtimeType}>');
+
     if (child is String) {
       return Text(
-        child,
+        child as String,
         style: TextStyle(
           fontFamily: FontsHelper.fontFamily,
           fontSize: 17.sp,
@@ -136,13 +135,13 @@ class CustomFilledButton extends StatelessWidget {
         ),
       );
     }
-    return child;
+    return child as Widget;
   }
 }
 
 enum CustomButtonStatus { enabled, disabled, processing }
 
-class CustomOutlinedButton extends StatelessWidget {
+class CustomOutlinedButton<T> extends StatelessWidget {
   const CustomOutlinedButton({
     super.key,
     this.outlineColor,
@@ -163,7 +162,7 @@ class CustomOutlinedButton extends StatelessWidget {
   final double? height;
   final double width;
   final Rx<CustomButtonStatus>? buttonStatus;
-  final dynamic child;
+  final T child;
   final bool useShadow;
   @override
   Widget build(BuildContext context) {
@@ -197,7 +196,7 @@ class CustomOutlinedButton extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(StylesHelper.globalBorderRadius),
                 child: Center(
-                  child: buildChild(),
+                  child: _buildChild(),
                 ),
               )
             : Obx(
@@ -210,7 +209,7 @@ class CustomOutlinedButton extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                               StylesHelper.globalBorderRadius),
                           child: Center(
-                            child: buildChild(),
+                            child: _buildChild(),
                           ),
                         );
                       }
@@ -220,7 +219,7 @@ class CustomOutlinedButton extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                               StylesHelper.globalBorderRadius),
                           child: Center(
-                            child: buildChild(),
+                            child: _buildChild(),
                           ),
                         );
                       }
@@ -243,12 +242,13 @@ class CustomOutlinedButton extends StatelessWidget {
     );
   }
 
-  buildChild() {
+  Widget _buildChild() {
     assert(child is String || child is Widget,
-        'Expected a widget or string for the child of the callToActionButton');
+        'Expected a widget or string for the child of the CustomOutlinedButton  but got <${child.runtimeType}>');
+
     if (child is String) {
       return Text(
-        child,
+        child as String,
         style: TextStyle(
           fontFamily: FontsHelper.fontFamily,
           fontSize: 17.sp,
@@ -256,11 +256,11 @@ class CustomOutlinedButton extends StatelessWidget {
         ),
       );
     }
-    return child;
+    return child as Widget;
   }
 }
 
-class CustomTintedButton extends StatelessWidget {
+class CustomTintedButton<T> extends StatelessWidget {
   const CustomTintedButton({
     super.key,
     this.foregroundColor,
@@ -280,7 +280,7 @@ class CustomTintedButton extends StatelessWidget {
   final double width;
   final Rx<CustomButtonStatus>? buttonStatus;
   final bool useShadow;
-  final dynamic child;
+  final T child;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -309,7 +309,7 @@ class CustomTintedButton extends StatelessWidget {
                 borderRadius:
                     BorderRadius.circular(StylesHelper.globalBorderRadius),
                 child: Center(
-                  child: buildChild(),
+                  child: _buildChild(),
                 ),
               )
             : Obx(
@@ -322,7 +322,7 @@ class CustomTintedButton extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                               StylesHelper.globalBorderRadius),
                           child: Center(
-                            child: buildChild(),
+                            child: _buildChild(),
                           ),
                         );
                       }
@@ -332,7 +332,7 @@ class CustomTintedButton extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                               StylesHelper.globalBorderRadius),
                           child: Center(
-                            child: buildChild(),
+                            child: _buildChild(),
                           ),
                         );
                       }
@@ -355,12 +355,13 @@ class CustomTintedButton extends StatelessWidget {
     );
   }
 
-  buildChild() {
+  Widget _buildChild() {
     assert(child is String || child is Widget,
-        'Expected a widget or string for the child of the callToActionButton');
+        'Expected a widget or string for the child of the CustomOutlinedButton  but got <${child.runtimeType}>');
+
     if (child is String) {
       return Text(
-        child,
+        child as String,
         style: TextStyle(
           fontFamily: FontsHelper.fontFamily,
           fontSize: 17.sp,
@@ -368,6 +369,6 @@ class CustomTintedButton extends StatelessWidget {
         ),
       );
     }
-    return child;
+    return child as Widget;
   }
 }

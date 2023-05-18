@@ -14,8 +14,8 @@ import 'package:qalam_noor_parents/views/login_page/login_page.dart';
 import 'package:qalam_noor_parents/views/student_list_page/controller/student_list_page_controller.dart';
 
 class StudentListPage extends StatelessWidget {
-  static const String routeName = '/studentListPage';
   const StudentListPage({super.key});
+  static const String routeName = '/studentListPage';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class StudentListPage extends StatelessWidget {
             tooltip: 'تسجيل الخروج',
             onPressed: () async {
               await SharedPrefsHelper.instance.clearSharedPrefs();
-              Get.offAllNamed(LoginPage.routeName);
+              await Get.offAllNamed<void>(LoginPage.routeName);
             },
             icon: Icon(
               Icons.login,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:qalam_noor_parents/models/enums.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/text_fields.dart';
@@ -7,7 +8,6 @@ import 'package:qalam_noor_parents/views/chat_page/controllers/chat_page_control
 import 'package:qalam_noor_parents/views/chat_page/widgets/chat_bubble.dart';
 import '../../tools/ui_tools/custom_appbar.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatPage extends StatefulWidget {
   static const routeName = '/chatPage';
@@ -37,10 +37,10 @@ class _ChatPageState extends State<ChatPage> {
       scrollListToEnd();
     });
     messageFocusNode.addListener(() async {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
 
       if (messageFocusNode.hasFocus) {
-        scrollListToEnd(shouldAnimate: true);
+        await scrollListToEnd(shouldAnimate: true);
       }
     });
     scrollController.addListener(() {
@@ -55,7 +55,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Future<void> scrollListToEnd({bool shouldAnimate = false}) async {
     if (shouldAnimate) {
-      scrollController.animateTo(
+      await scrollController.animateTo(
         40.h + scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 500),
         curve: Curves.fastOutSlowIn,
@@ -70,10 +70,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: CustomAppBar(
-        title: controller.conversation.title,
-        backButtonEnabled: true,
-      ),
+      appBar: CustomAppBar(title: controller.conversation.title),
       bodyPadding: EdgeInsets.only(
         left: 20.w,
         right: 20.w,

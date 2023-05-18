@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:qalam_noor_parents/shared/global_params.dart';
 import 'package:qalam_noor_parents/tools/dialogs_services/open_dialog_service.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
-import 'package:qalam_noor_parents/tools/ui_tools/text_fields.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
 
 import '../../helpers/shared_prefs_helper.dart';
@@ -81,7 +80,7 @@ class _OtherSettingsCard extends StatelessWidget {
               title: 'تسجيل الخروج',
               onTap: () async {
                 await SharedPrefsHelper.instance.clearSharedPrefs();
-                Get.offAllNamed(LoginPage.routeName);
+                await Get.offAllNamed<void>(LoginPage.routeName);
               },
             ),
             const Spacer(),
@@ -104,7 +103,7 @@ class _OtherSettingsCard extends StatelessWidget {
   }
 
   ListTile _buildSettingsOptionListTile(
-    context, {
+    BuildContext context, {
     required String title,
     required IconData iconData,
     void Function()? onTap,
@@ -189,10 +188,20 @@ class _FamilyProfileCard extends StatelessWidget {
               height: 45.h,
               width: 150.w,
               onTap: () async {
-                DialogService.openConfirmationDialog(
+                await DialogService.openConfirmationDialog<void>(
                   title: 'Test Title',
                   // showCloseButton: false,
-                  size: const Size(double.infinity, 700),
+                  // size: const Size(double.infinity, 700),
+                  dialogAlias: 'Settings - ChangePassword',
+                  // actions: Row(
+                  //   children: [
+                  //     const Text('Hell'),
+                  //     ElevatedButton(
+                  //       onPressed: () {},
+                  //       child: const Text('test'),
+                  //     )
+                  //   ],
+                  // ),
                 );
               },
               child: Text(

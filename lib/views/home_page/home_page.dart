@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
             tooltip: 'تسجيل الخروج',
             onPressed: () async {
               await SharedPrefsHelper.instance.clearSharedPrefs();
-              Get.offAllNamed(LoginPage.routeName);
+              await Get.offAllNamed<void>(LoginPage.routeName);
             },
             icon: Icon(
               Icons.login,

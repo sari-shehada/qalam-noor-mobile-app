@@ -26,7 +26,7 @@ class Wrapper extends StatelessWidget {
           fallbackLocale: const Locale('ar'),
           locale: const Locale('ar'),
           initialRoute: LoaderPage.routeName,
-          getPages: RoutesHelper.routes,
+          getPages: RoutesHelper.instance.routes,
           defaultTransition: Transition.fadeIn,
         );
       },

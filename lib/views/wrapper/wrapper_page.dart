@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../helpers/routes_helper.dart';
-import '../loader_page/loader_page.dart';
 
+import '../../helpers/routes_helper.dart';
 import '../../helpers/theme_helper.dart';
+import '../loader_page/loader_page.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -13,13 +13,11 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(390, 844),
-      splitScreenMode: false,
       useInheritedMediaQuery: true,
       builder: (context, child) {
         return GetMaterialApp(
           title: 'Qalam & Noor',
           debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.system,
           darkTheme: ThemesHelper.darkTheme,
           theme: ThemesHelper.lightTheme,
           home: child,

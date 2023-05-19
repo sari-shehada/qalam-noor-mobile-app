@@ -1,9 +1,52 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import '../enums.dart';
 
+@immutable
 class Mother {
+  const Mother({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.fatherName,
+    required this.motherName,
+    required this.doesLiveWithHusband,
+    required this.career,
+    required this.tieNumber,
+    required this.tiePlace,
+    required this.placeOfBirth,
+    required this.dateOfBirth,
+    required this.religion,
+    required this.educationalStatus,
+    required this.phoneNumber,
+  });
+
+  factory Mother.fromMap(Map<String, dynamic> map) {
+    return Mother(
+      id: map['id'] as int,
+      firstName: map['firstName'] as String,
+      lastName: map['lastName'] as String,
+      fatherName: map['fatherName'] as String,
+      motherName: map['motherName'] as String,
+      doesLiveWithHusband: map['doesLiveWithHusband'] as bool,
+      career: map['career'] as String,
+      tieNumber: map['tieNumber'] as int,
+      tiePlace: map['tiePlace'] as String,
+      placeOfBirth: map['placeOfBirth'] as String,
+      dateOfBirth:
+          DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] as int),
+      religion: Religion.values[map['religion'] as int],
+      educationalStatus:
+          EducationalStatus.values[map['educationalStatus'] as int],
+      phoneNumber: map['phoneNumber'] as String,
+    );
+  }
+  factory Mother.fromJson(String source) =>
+      Mother.fromMap(json.decode(source) as Map<String, dynamic>);
+
   final int id;
   final String firstName;
   final String lastName;
@@ -21,22 +64,6 @@ class Mother {
   //enum
   final EducationalStatus educationalStatus;
   final String phoneNumber;
-  Mother({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.fatherName,
-    required this.motherName,
-    required this.doesLiveWithHusband,
-    required this.career,
-    required this.tieNumber,
-    required this.tiePlace,
-    required this.placeOfBirth,
-    required this.dateOfBirth,
-    required this.religion,
-    required this.educationalStatus,
-    required this.phoneNumber,
-  });
 
   Mother copyWith({
     int? id,
@@ -91,31 +118,7 @@ class Mother {
     };
   }
 
-  factory Mother.fromMap(Map<String, dynamic> map) {
-    return Mother(
-      id: map['id'] as int,
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
-      fatherName: map['fatherName'] as String,
-      motherName: map['motherName'] as String,
-      doesLiveWithHusband: map['doesLiveWithHusband'] as bool,
-      career: map['career'] as String,
-      tieNumber: map['tieNumber'] as int,
-      tiePlace: map['tiePlace'] as String,
-      placeOfBirth: map['placeOfBirth'] as String,
-      dateOfBirth:
-          DateTime.fromMillisecondsSinceEpoch(map['dateOfBirth'] as int),
-      religion: Religion.values[map['religion'] as int],
-      educationalStatus:
-          EducationalStatus.values[map['educationalStatus'] as int],
-      phoneNumber: map['phoneNumber'] as String,
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory Mother.fromJson(String source) =>
-      Mother.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -124,7 +127,9 @@ class Mother {
 
   @override
   bool operator ==(covariant Mother other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.firstName == firstName &&

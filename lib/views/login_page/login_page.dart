@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginPageController controller = Get.put(LoginPageController());
+    final LoginPageController controller = Get.put(LoginPageController());
     return CustomScaffold(
       bodyPadding: EdgeInsets.symmetric(horizontal: 30.w),
       body: SingleChildScrollView(

@@ -16,7 +16,7 @@ class StudentController {
     return HttpService.getParsed<List<Student>, List<dynamic>>(
       url: endPoint,
       dataMapper: (responseData) {
-        return responseData.map((e) => Student.fromMap(e)).toList();
+        return responseData.map<Student>((e) => Student.fromMap(e)).toList();
       },
     );
   }

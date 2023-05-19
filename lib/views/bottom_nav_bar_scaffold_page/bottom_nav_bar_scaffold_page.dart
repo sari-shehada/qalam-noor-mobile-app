@@ -6,8 +6,8 @@ import '../../tools/ui_tools/custom_scaffold.dart';
 import 'controller/bottom_nav_bar_scaffold_page_controller.dart';
 
 class BottomNavBarScaffoldPage extends StatelessWidget {
-  static const String routeName = '/bottomNavBarScaffoldPage';
   const BottomNavBarScaffoldPage({super.key});
+  static const String routeName = '/bottomNavBarScaffoldPage';
 
   @override
   Widget build(BuildContext context) {

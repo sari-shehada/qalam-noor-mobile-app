@@ -133,7 +133,9 @@ class Student {
 
   @override
   bool operator ==(covariant Student other) {
-    if (identical(this, other)) return true;
+    if (identical(this, other)) {
+      return true;
+    }
 
     return other.id == id &&
         other.publicRecordId == publicRecordId &&

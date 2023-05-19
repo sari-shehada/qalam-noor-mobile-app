@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import '../../helpers/shared_prefs_helper.dart';
 import '../../shared/global_params.dart';
 import '../../tools/dialogs_services/open_dialog_service.dart';
 import '../../tools/ui_tools/buttons.dart';
-import '../../tools/ui_tools/ui_tools.dart';
-
-import '../../helpers/shared_prefs_helper.dart';
 import '../../tools/ui_tools/custom_appbar.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
+import '../../tools/ui_tools/ui_tools.dart';
 import '../login_page/login_page.dart';
 
 class SettingsPage extends StatelessWidget {
-  static const String routeName = '/settingsPage';
   const SettingsPage({super.key});
+  static const String routeName = '/settingsPage';
 
   @override
   Widget build(BuildContext context) {

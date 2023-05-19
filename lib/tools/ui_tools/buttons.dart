@@ -49,7 +49,6 @@ class CustomFilledButton<T> extends StatelessWidget {
         ),
         child: Material(
           color: backgroundColor ?? Get.theme.colorScheme.primary,
-          elevation: 0,
           borderRadius: BorderRadius.circular(StylesHelper.globalBorderRadius),
           child: InkWell(
             onTap: onTap,
@@ -188,7 +187,6 @@ class CustomOutlinedButton<T> extends StatelessWidget {
       ),
       child: Material(
         color: Colors.transparent,
-        elevation: 0,
         borderRadius: BorderRadius.circular(StylesHelper.globalBorderRadius),
         child: buttonStatus == null
             ? InkWell(
@@ -301,7 +299,6 @@ class CustomTintedButton<T> extends StatelessWidget {
       ),
       child: Material(
         color: Colors.transparent,
-        elevation: 0,
         borderRadius: BorderRadius.circular(StylesHelper.globalBorderRadius),
         child: buttonStatus == null
             ? InkWell(

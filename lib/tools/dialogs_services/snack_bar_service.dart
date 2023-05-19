@@ -38,7 +38,7 @@ class SnackbarService extends GetxService {
     Get.showSnackbar(GetSnackBar(
       borderRadius: 15,
       margin: EdgeInsets.symmetric(
-          horizontal: (Get.mediaQuery.size.width / 4 + 20.w), vertical: 30),
+          horizontal: Get.mediaQuery.size.width / 4 + 20.w, vertical: 30),
       icon: Row(
         children: [
           AddHorizontalSpacing(value: 20.w),

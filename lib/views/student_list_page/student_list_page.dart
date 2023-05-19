@@ -126,7 +126,6 @@ class StudentListPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     'الابن الحالي',
@@ -138,7 +137,6 @@ class StudentListPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CircleAvatar(
                         radius: 30.r,
@@ -230,13 +228,13 @@ class StudentListPage extends StatelessWidget {
 }
 
 class _StudentCard extends StatelessWidget {
-  final Student student;
-
-  final StudentListPageController controller;
   const _StudentCard({
     required this.student,
     required this.controller,
   });
+  final Student student;
+
+  final StudentListPageController controller;
 
   @override
   Widget build(BuildContext context) {

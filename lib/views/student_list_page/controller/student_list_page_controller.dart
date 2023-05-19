@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
+
 import '../../../controllers/student_controller.dart';
 import '../../../helpers/shared_prefs_helper.dart';
 import '../../../models/agendas/student.dart';
-import '../../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
-
 import '../../../shared/global_params.dart';
+import '../../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
 
 class StudentListPageController extends GetxController {
   StudentListPageController() {

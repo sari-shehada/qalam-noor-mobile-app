@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatBubble extends StatelessWidget {
-  final String message;
-  final bool isSent;
   const ChatBubble({
     Key? key,
     required this.message,
     required this.isSent,
   }) : super(key: key);
+  final String message;
+  final bool isSent;
 
   @override
   Widget build(BuildContext context) {

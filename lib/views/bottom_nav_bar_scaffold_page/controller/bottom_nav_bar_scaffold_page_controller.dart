@@ -6,11 +6,11 @@ import '../../inbox_page/inbox_page.dart';
 import '../../settings_page/settings_page.dart';
 
 class BottomNavBarScaffoldPageController extends GetxController {
-  RxInt index = 0.obs;
-  late Rx<Widget> selectedWidget;
   BottomNavBarScaffoldPageController() {
     selectedWidget = Rx<Widget>(const HomePage());
   }
+  RxInt index = 0.obs;
+  late Rx<Widget> selectedWidget;
   final List<IconData> bottomNavBarIcons = [
     Icons.home,
     Icons.inbox,

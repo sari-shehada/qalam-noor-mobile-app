@@ -23,8 +23,6 @@ class EmptyItemWidget extends StatelessWidget {
     return Padding(
       padding: padding ?? EdgeInsets.only(bottom: 120.h),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
@@ -37,7 +35,7 @@ class EmptyItemWidget extends StatelessWidget {
             value: 130.h,
           ),
           Text(
-            "لم يتم العثور على $itemName",
+            'لم يتم العثور على $itemName',
             style: textTheme.headlineLarge!.copyWith(
               color: themeData.colorScheme.outline,
             ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import '../../models/enums.dart';
+import '../../tools/ui_tools/custom_appbar.dart';
+import '../../tools/ui_tools/custom_scaffold.dart';
 import '../../tools/ui_tools/text_fields.dart';
 import '../../tools/ui_tools/ui_tools.dart';
 import 'controllers/chat_page_controller.dart';
 import 'widgets/chat_bubble.dart';
-import '../../tools/ui_tools/custom_appbar.dart';
-import '../../tools/ui_tools/custom_scaffold.dart';
 
 class ChatPage extends StatefulWidget {
-  static const routeName = '/chatPage';
   const ChatPage({super.key});
+  static const routeName = '/chatPage';
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -96,8 +97,7 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ),
               AddVerticalSpacing(value: 10.h),
-              controller.conversation.status == ConversationStatus.closed
-                  ? Row(
+              if (controller.conversation.status == ConversationStatus.closed) Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CircleAvatar(
@@ -114,8 +114,7 @@ class _ChatPageState extends State<ChatPage> {
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ],
-                    )
-                  : Row(
+                    ) else Row(
                       children: [
                         IconButton(
                           onPressed: () {},
@@ -151,9 +150,7 @@ class _ChatPageState extends State<ChatPage> {
               AddVerticalSpacing(value: 10.h),
             ],
           ),
-          !shouldShowBackToBottom
-              ? const SizedBox.shrink()
-              : Positioned(
+          if (!shouldShowBackToBottom) const SizedBox.shrink() else Positioned(
                   bottom: 100,
                   right: 10,
                   child: IconButton(

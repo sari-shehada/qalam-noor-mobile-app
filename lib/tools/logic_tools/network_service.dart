@@ -12,14 +12,14 @@ abstract class HttpService {
     required String url,
     required MapperReturnType Function(JsonParseType responseData) dataMapper,
   }) async {
-    http.Response response = await getUnparsed(url);
+    final http.Response response = await getUnparsed(url);
     return dataMapper(jsonDecode(response.body) as JsonParseType);
   }
 
   static Future<http.Response> getUnparsed(String url,
       {bool shouldLog = false}) async {
     final combinedURL = _baseUrl + url;
-    http.Response response = await http.get(Uri.parse(combinedURL));
+    final http.Response response = await http.get(Uri.parse(combinedURL));
     if (shouldLog) {
       log('On URL: $combinedURL -> \nGot Data: ${response.body}\n');
     }
@@ -30,8 +30,8 @@ abstract class HttpService {
     required String url,
     Map<String, dynamic>? body,
   }) async {
-    Uri uriParsedFromURL = Uri.parse(_baseUrl + url);
-    http.Response response = await http.post(
+    final Uri uriParsedFromURL = Uri.parse(_baseUrl + url);
+    final http.Response response = await http.post(
       uriParsedFromURL,
       body: body,
     );

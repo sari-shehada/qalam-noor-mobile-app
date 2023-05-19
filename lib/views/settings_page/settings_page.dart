@@ -50,7 +50,6 @@ class _OtherSettingsCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'الابن الحالي: ${GlobalParams.selectedStudent.firstName}',

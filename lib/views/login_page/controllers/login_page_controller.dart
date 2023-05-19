@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../controllers/auth_controller.dart';
+import '../../../controllers/student_controller.dart';
 import '../../../helpers/shared_prefs_helper.dart';
 import '../../../models/agendas/families.dart';
+import '../../../models/agendas/student.dart';
 import '../../../shared/global_params.dart';
 import '../../../shared/item_or.dart';
-import '../../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
-
-import '../../../controllers/student_controller.dart';
-import '../../../models/agendas/student.dart';
 import '../../../tools/dialogs_services/snack_bar_service.dart';
 import '../../../tools/ui_tools/buttons.dart';
+import '../../bottom_nav_bar_scaffold_page/bottom_nav_bar_scaffold_page.dart';
 import '../../student_list_page/student_list_page.dart';
 
 class LoginPageController extends GetxController {

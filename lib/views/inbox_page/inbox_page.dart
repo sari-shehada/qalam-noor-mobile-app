@@ -2,9 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:qalam_noor_parents/models/conversations/conversation.dart';
 import 'package:qalam_noor_parents/models/enums.dart';
+import 'package:qalam_noor_parents/tools/ui_tools/buttons.dart';
+import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
+import 'package:qalam_noor_parents/views/inbox_page/controllers/inbox_page_contoroller.dart';
 
+import '../../shared/global_params.dart';
 import '../../tools/ui_tools/custom_appbar.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
 import '../chat_page/chat_page.dart';
@@ -17,6 +22,7 @@ class InboxPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final InboxPageController controller = Get.put(InboxPageController());
     return CustomScaffold(
       appBar: CustomAppBar(
         title: 'صندوق الوارد',
@@ -40,23 +46,102 @@ class InboxPage1 extends StatelessWidget {
         right: 20.w,
         bottom: MediaQuery.of(context).padding.bottom,
       ),
-      body: ListView(
-        padding: EdgeInsets.only(top: 10.h),
-        children: List.generate(20, (index) {
-          return _ConversationCard(
-            conversation: Conversation(
-              id: 12,
-              studentId: 12,
-              title: 'هذه شكوى على ابنك المهمل في دراسته وامور ثانية',
-              status: index % 3 == 0
-                  ? ConversationStatus.closed
-                  : ConversationStatus.open,
-              originalIssuer: index % 2 == 0
-                  ? ConversationParty.parents
-                  : ConversationParty.secretKeeper,
-            ),
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return Center(
+              child: LoadingAnimationWidget.fallingDot(
+                color: Theme.of(context).colorScheme.primary,
+                size: 40.w,
+              ),
+            );
+          }
+          return controller.conversations.value!.fold(
+            (String errorMessage) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 30.sp,
+                      ),
+                      AddHorizontalSpacing(value: 10.w),
+                      Center(
+                          child: Text(
+                        errorMessage,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )),
+                    ],
+                  ),
+                  AddVerticalSpacing(value: 30.h),
+                  CustomFilledButton<String>(
+                    height: 40.h,
+                    width: 150.w,
+                    onTap: () async {
+                      await controller.refreshList();
+                    },
+                    child: 'تحديث',
+                  ),
+                ],
+              );
+            },
+            (List<Conversation> conversations) {
+              if (conversations.isEmpty) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.chat_sharp,
+                          color: Theme.of(context).colorScheme.primary,
+                          size: 25.sp,
+                        ),
+                        AddHorizontalSpacing(value: 10.w),
+                        Center(
+                            child: Text(
+                          'لا يوجد محادثات تخص "${GlobalParams.selectedStudent.firstName}" حاليا',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        )),
+                      ],
+                    ),
+                    AddVerticalSpacing(value: 30.h),
+                    CustomFilledButton<String>(
+                      height: 40.h,
+                      width: 150.w,
+                      onTap: () async {
+                        await controller.refreshList();
+                      },
+                      child: 'تحديث',
+                    ),
+                  ],
+                );
+              }
+              return RefreshIndicator(
+                onRefresh: () async {
+                  return controller.refreshList();
+                },
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
+                  padding: EdgeInsets.only(top: 10.h),
+                  itemCount: conversations.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _ConversationCard(
+                      conversation: conversations[index],
+                    );
+                  },
+                ),
+              );
+            },
           );
-        }),
+        },
       ),
     );
   }
@@ -84,12 +169,12 @@ class _ConversationCard extends StatelessWidget {
             arguments: ChatPageController(conversation: conversation),
           );
         },
-        leading: buildAppropriateIssuerIcon(conversation.originalIssuer),
+        leading: buildAppropriateIssuerIcon(conversation.orginalIssuer),
         title: Text(
           conversation.title,
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: Text(getAppropriateIssuerTitle(conversation.originalIssuer)),
+        subtitle: Text(getAppropriateIssuerTitle(conversation.orginalIssuer)),
         dense: false,
         trailing: Icon(
           Icons.circle,

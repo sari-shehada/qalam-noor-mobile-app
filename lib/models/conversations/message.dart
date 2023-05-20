@@ -5,68 +5,53 @@ import '../enums.dart';
 
 class Message {
   int id;
-  String title;
+  int conversationId;
   String body;
+
   //enum
   final ConversationParty sender;
-  int sequence;
-  DateTime date;
-  int conversationId;
+  String date;
   Message({
     required this.id,
-    required this.title,
+    required this.conversationId,
     required this.body,
     required this.sender,
-    required this.sequence,
     required this.date,
-    required this.conversationId,
   });
-
-  String getMessageSender() {
-    return conversationPartyAsString[sender]!;
-  }
 
   Message copyWith({
     int? id,
-    String? title,
+    int? conversationId,
     String? body,
     ConversationParty? sender,
-    int? sequence,
-    DateTime? date,
-    int? conversationId,
+    String? date,
   }) {
     return Message(
       id: id ?? this.id,
-      title: title ?? this.title,
+      conversationId: conversationId ?? this.conversationId,
       body: body ?? this.body,
       sender: sender ?? this.sender,
-      sequence: sequence ?? this.sequence,
       date: date ?? this.date,
-      conversationId: conversationId ?? this.conversationId,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'title': title,
+      'conversationId': conversationId,
       'body': body,
       'sender': sender.index,
-      'sequence': sequence,
-      'date': date.millisecondsSinceEpoch,
-      'conversationId': conversationId,
+      'date': date,
     };
   }
 
   factory Message.fromMap(Map<String, dynamic> map) {
     return Message(
       id: map['id'] as int,
-      title: map['title'] as String,
+      conversationId: map['conversationId'] as int,
       body: map['body'] as String,
       sender: ConversationParty.values[map['sender'] as int],
-      sequence: map['sequence'] as int,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
-      conversationId: map['conversationId'] as int,
+      date: map['date'] as String,
     );
   }
 
@@ -77,7 +62,7 @@ class Message {
 
   @override
   String toString() {
-    return 'Message(id: $id, title: $title, body: $body, sender: $sender, sequence: $sequence, date: $date, conversationId: $conversationId)';
+    return 'Message(id: $id, conversationId: $conversationId, body: $body, sender: $sender, date: $date)';
   }
 
   @override
@@ -85,22 +70,18 @@ class Message {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.title == title &&
+        other.conversationId == conversationId &&
         other.body == body &&
         other.sender == sender &&
-        other.sequence == sequence &&
-        other.date == date &&
-        other.conversationId == conversationId;
+        other.date == date;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        title.hashCode ^
+        conversationId.hashCode ^
         body.hashCode ^
         sender.hashCode ^
-        sequence.hashCode ^
-        date.hashCode ^
-        conversationId.hashCode;
+        date.hashCode;
   }
 }

@@ -208,7 +208,7 @@ class StudentListPage extends StatelessWidget {
                   BorderRadius.circular(StylesHelper.globalBorderRadius),
             ),
             padding: EdgeInsets.symmetric(horizontal: 20.h, vertical: 25.h),
-            child: CustomFilledButton(
+            child: CustomFilledButton<Text>(
               height: 55,
               onTap: controller.selectedStudent.value == null
                   ? () {}

@@ -16,6 +16,7 @@ analyzer:
     missing_required_param: error
     missing_return: error
     todo: ignore
+
   language:
     strict-inference: true
     strict-raw-types: true
@@ -24,12 +25,10 @@ linter:
   rules:
     - always_declare_return_types
     - always_put_control_body_on_new_line
-    # - always_put_required_named_parameters_first # not crucial and we do it all around
-    - always_require_non_null_named_parameters
-    # - always_specify_types # we use type inference
+    - always_put_required_named_parameters_first # not crucial and we do it all around
+    - always_specify_types # we use type inference
     - annotate_overrides
-    # - avoid_annotating_with_dynamic # we want to be explicit with dynamic
-    - avoid_as
+    - avoid_annotating_with_dynamic # we want to be explicit with dynamic
     - avoid_bool_literals_in_conditional_expressions
     # - avoid_catches_without_on_clauses # we catch both Exceptions and Errors
     - avoid_catching_errors
@@ -51,8 +50,6 @@ linter:
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
-    # - avoid_returning_null # we do this commonly
-    - avoid_returning_null_for_future
     - avoid_returning_null_for_void
     - avoid_returning_this
     - avoid_setters_without_getters
@@ -99,7 +96,6 @@ linter:
     - no_runtimeType_toString
     - non_constant_identifier_names
     - null_closures
-    # - omit_local_variable_types # opposite of always_specify_types
     - one_member_abstracts
     - only_throw_errors
     - overridden_fields

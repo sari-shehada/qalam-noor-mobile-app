@@ -5,18 +5,24 @@ import '../enums.dart';
 
 class Conversation {
   final int id;
-  int studentId;
-  String title;
+  final int studentId;
+  final String title;
+
   //enum
   final ConversationStatus status;
   //enum
-  final ConversationParty originalIssuer;
+  final ConversationParty orginalIssuer;
+
+  final bool isReadOther;
+  final bool isReadParent;
   Conversation({
     required this.id,
     required this.studentId,
     required this.title,
     required this.status,
-    required this.originalIssuer,
+    required this.orginalIssuer,
+    required this.isReadOther,
+    required this.isReadParent,
   });
 
   Conversation copyWith({
@@ -24,14 +30,18 @@ class Conversation {
     int? studentId,
     String? title,
     ConversationStatus? status,
-    ConversationParty? originalIssuer,
+    ConversationParty? orginalIssuer,
+    bool? isReadOther,
+    bool? isReadParent,
   }) {
     return Conversation(
       id: id ?? this.id,
       studentId: studentId ?? this.studentId,
       title: title ?? this.title,
       status: status ?? this.status,
-      originalIssuer: originalIssuer ?? this.originalIssuer,
+      orginalIssuer: orginalIssuer ?? this.orginalIssuer,
+      isReadOther: isReadOther ?? this.isReadOther,
+      isReadParent: isReadParent ?? this.isReadParent,
     );
   }
 
@@ -41,7 +51,9 @@ class Conversation {
       'studentId': studentId,
       'title': title,
       'status': status.index,
-      'originalIssuer': originalIssuer.index,
+      'orginalIssuer': orginalIssuer.index,
+      'isReadOther': isReadOther,
+      'isReadParent': isReadParent,
     };
   }
 
@@ -51,7 +63,9 @@ class Conversation {
       studentId: map['studentId'] as int,
       title: map['title'] as String,
       status: ConversationStatus.values[map['status'] as int],
-      originalIssuer: ConversationParty.values[map['originalIssuer'] as int],
+      orginalIssuer: ConversationParty.values[map['orginalIssuer'] as int],
+      isReadOther: map['isReadOther'] as bool,
+      isReadParent: map['isReadParent'] as bool,
     );
   }
 
@@ -62,7 +76,7 @@ class Conversation {
 
   @override
   String toString() {
-    return 'Conversation(id: $id, studentId: $studentId, title: $title, status: $status, originalIssuer: $originalIssuer)';
+    return 'Conversation(id: $id, studentId: $studentId, title: $title, status: $status, orginalIssuer: $orginalIssuer, isReadOther: $isReadOther, isReadParent: $isReadParent)';
   }
 
   @override
@@ -73,7 +87,9 @@ class Conversation {
         other.studentId == studentId &&
         other.title == title &&
         other.status == status &&
-        other.originalIssuer == originalIssuer;
+        other.orginalIssuer == orginalIssuer &&
+        other.isReadOther == isReadOther &&
+        other.isReadParent == isReadParent;
   }
 
   @override
@@ -82,6 +98,8 @@ class Conversation {
         studentId.hashCode ^
         title.hashCode ^
         status.hashCode ^
-        originalIssuer.hashCode;
+        orginalIssuer.hashCode ^
+        isReadOther.hashCode ^
+        isReadParent.hashCode;
   }
 }

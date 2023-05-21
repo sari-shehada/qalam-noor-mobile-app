@@ -7,18 +7,21 @@ import '../../settings_page/settings_page.dart';
 
 class BottomNavBarScaffoldPageController extends GetxController {
   BottomNavBarScaffoldPageController() {
+    //TODO: Fix Random Behavior
     selectedWidget = Rx<Widget>(const HomePage());
   }
   RxInt index = 0.obs;
   late Rx<Widget> selectedWidget;
-  final List<IconData> bottomNavBarIcons = [
+  final List<IconData> bottomNavBarIcons = <IconData>[
     Icons.home,
     Icons.inbox,
     Icons.settings,
   ];
 
   void onIndexChanged(int newIndex) {
-    if (newIndex == index.value) return;
+    if (newIndex == index.value) {
+      return;
+    }
     switch (newIndex) {
       case 0:
         selectedWidget.value = const HomePage();

@@ -11,7 +11,8 @@ class BottomNavBarScaffoldPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(BottomNavBarScaffoldPageController());
+    final BottomNavBarScaffoldPageController controller =
+        Get.put(BottomNavBarScaffoldPageController());
     return CustomScaffold(
       extendBody: true,
       bottomSection: CustomBottomNavigationBar(

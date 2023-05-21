@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
 import 'package:qalam_noor_parents/views/inbox_page/controllers/inbox_page_contoroller.dart';
 
 import '../../shared/global_params.dart';
+import '../../tools/dialogs_services/snack_bar_service.dart';
 import '../../tools/ui_tools/custom_appbar.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
 import '../chat_page/chat_page.dart';
@@ -31,7 +31,14 @@ class InboxPage1 extends StatelessWidget {
           IconButton(
             tooltip: 'انشاء محادثة جديدة',
             onPressed: () async {
-              //TODO: Add New Chat
+              final bool? val = await controller.openAddConversationDialog();
+              if (val != null && val) {
+                SnackbarService.showSuccessSnackBar(
+                  title: 'تمت العملية بنجاح',
+                  message: 'تم انشاء المحادثة بنجاح',
+                );
+                await controller.refreshList();
+              }
             },
             icon: Icon(
               Icons.add,
@@ -122,6 +129,7 @@ class InboxPage1 extends StatelessWidget {
                   ],
                 );
               }
+              conversations = conversations.reversed.toList();
               return RefreshIndicator(
                 onRefresh: () async {
                   return controller.refreshList();

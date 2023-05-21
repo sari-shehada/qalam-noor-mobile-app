@@ -59,7 +59,6 @@ class LoaderPage extends StatelessWidget {
     //If User previously logged in
     if (!SharedPrefsHelper.instance.isLoggedIn()) {
       await Get.offAllNamed<void>(LoginPage.routeName);
-
       return;
     }
     final String? username = SharedPrefsHelper.instance.getUsername();

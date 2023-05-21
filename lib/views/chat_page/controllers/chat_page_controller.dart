@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:qalam_noor_parents/models/enums.dart';
+import 'package:qalam_noor_parents/tools/dialogs_services/snack_bar_service.dart';
 
 import '../../../controllers/conversation_controller.dart';
 import '../../../models/conversations/conversation.dart';
@@ -29,6 +30,7 @@ class ChatPageController extends GetxController {
   final RxBool isLoading = true.obs;
   RxBool isInitiallyLoading = true.obs;
   final Conversation conversation;
+  RxBool isSendingMessage = false.obs;
 
   FutureEither<List<Message>> _getMessagesByConversationId() async {
     isLoading.value = true;
@@ -55,7 +57,6 @@ class ChatPageController extends GetxController {
     if (isLoading.value) {
       return;
     }
-    // print('Calling BE');
     await _getMessagesByConversationId();
   }
 
@@ -65,8 +66,32 @@ class ChatPageController extends GetxController {
     super.onClose();
   }
 
-  //TODO: Call on get.back from conversation screen;
   void cancelTimer() {
     _timer.cancel();
+  }
+
+  Future<bool> sendMessage({required String message}) async {
+    isSendingMessage.value = true;
+    final Either<String, bool> result = await ConversationController.instance
+        .sendMessage(body: message, conversationId: conversation.id);
+    bool didSendSuccessfully = false;
+    result.fold(
+      (String errorMessage) {
+        SnackbarService.showErrorSnackBar(
+          title: 'حدث خطأ',
+          message: errorMessage,
+        );
+        didSendSuccessfully = false;
+      },
+      (_) {
+        SnackbarService.showSuccessSnackBar(
+          title: 'تمت العملية بنجاح',
+          message: 'تم ارسال رسالتك بنجاح',
+        );
+        didSendSuccessfully = true;
+      },
+    );
+    isSendingMessage.value = false;
+    return didSendSuccessfully;
   }
 }

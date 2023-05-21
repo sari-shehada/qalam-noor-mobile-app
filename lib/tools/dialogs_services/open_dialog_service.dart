@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 abstract class DialogService extends GetxService {
   static Future<T?> openConfirmationDialog<T>({
     required String title,
+    required String dialogAlias,
     Widget? content,
     Row? actions,
     bool showCloseButton = true,
@@ -16,7 +17,6 @@ abstract class DialogService extends GetxService {
     EdgeInsets? dialogPadding,
     bool barrierDismissible = true,
     bool useSafeArea = true,
-    required String dialogAlias,
   }) async {
     // double titleSectionSize =
     return Get.dialog<T>(
@@ -30,7 +30,7 @@ abstract class DialogService extends GetxService {
               child: SizedBox.fromSize(
                 size: size,
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     ConstrainedBox(
                       constraints: BoxConstraints(
                         maxHeight: 160.h,
@@ -39,12 +39,12 @@ abstract class DialogService extends GetxService {
                       child: SizedBox(
                         height: size.height * .1,
                         child: Stack(
-                          children: [
+                          children: <Widget>[
                             if (showCloseButton)
                               Align(
                                 alignment: AlignmentDirectional.centerStart,
                                 child: IconButton(
-                                  onPressed: Get.back<dynamic>,
+                                  onPressed: Get.back<T>,
                                   icon: Icon(
                                     Icons.cancel_outlined,
                                     color: Get.theme.colorScheme.primary,
@@ -86,12 +86,11 @@ abstract class DialogService extends GetxService {
                           minHeight: 50.h,
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 7.h,
-                            horizontal: 10.w,
-                          ),
-                          child: actions,
-                        ),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.h,
+                              horizontal: 10.w,
+                            ),
+                            child: actions),
                       ),
                   ],
                 ),

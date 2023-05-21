@@ -6,8 +6,12 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 abstract class HttpService {
+  const HttpService();
   static const String _baseUrl = 'http://qalamandnoor-001-site1.ftempurl.com/';
-
+  static const Map<String, String> _headers = <String, String>{
+    'accept': 'text/plain',
+    'Content-Type': 'application/json'
+  };
   static Future<MapperReturnType> getParsed<MapperReturnType, JsonParseType>({
     required String url,
     required MapperReturnType Function(JsonParseType responseData) dataMapper,
@@ -18,7 +22,7 @@ abstract class HttpService {
 
   static Future<http.Response> getUnparsed(String url,
       {bool shouldLog = false}) async {
-    final combinedURL = _baseUrl + url;
+    final String combinedURL = _baseUrl + url;
     final http.Response response = await http.get(Uri.parse(combinedURL));
     if (shouldLog) {
       log('On URL: $combinedURL -> \nGot Data: ${response.body}\n');
@@ -28,11 +32,12 @@ abstract class HttpService {
 
   static Future<int?> post({
     required String url,
-    Map<String, dynamic>? body,
+    String? body,
   }) async {
     final Uri uriParsedFromURL = Uri.parse(_baseUrl + url);
     final http.Response response = await http.post(
       uriParsedFromURL,
+      headers: _headers,
       body: body,
     );
     return int.tryParse(response.body.toString());

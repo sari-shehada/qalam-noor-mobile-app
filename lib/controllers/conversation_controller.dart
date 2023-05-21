@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:qalam_noor_parents/models/conversations/conversation.dart';
 import 'package:qalam_noor_parents/models/conversations/message.dart';
 import 'package:qalam_noor_parents/shared/global_params.dart';
 
+import '../models/enums.dart';
 import '../tools/logic_tools/network_service.dart';
 
 typedef FutureEither<T> = Future<Either<String, T>>;
@@ -57,6 +60,67 @@ class ConversationController {
     } catch (e) {
       print(e);
       return left('حدث خطأ اثناء جلب المحادثات، حاول مرة أخرى');
+    }
+  }
+
+  FutureEither<bool> sendMessage(
+      {required String body, required int conversationId}) async {
+    try {
+      final Message message = Message(
+        id: -1,
+        conversationId: conversationId,
+        body: body,
+        sender: ConversationParty.parents,
+        date: '_DISPOSABLE_STRING',
+      );
+      final String endPoint = '${_messagesControllerName}InsertMassege';
+      log(endPoint);
+      final int? sendStatus = await HttpService.post(
+        url: endPoint,
+        body: message.toJson(),
+      );
+      if (sendStatus == null) {
+        throw Exception('Null Returned');
+      }
+      if (sendStatus == 0) {
+        throw Exception('Expected to get Message ID but got $sendStatus');
+      }
+      return right(true);
+    } catch (e) {
+      print(e);
+      return left('حدث خطأ اثناء ارسال رسالتك، حاول مرة أخرى');
+    }
+  }
+
+  FutureEither<bool> createNewConversation(
+      {required String conversationTitle}) async {
+    try {
+      final Conversation conversation = Conversation(
+        id: -1,
+        studentId: GlobalParams.selectedStudent.id,
+        title: conversationTitle,
+        status: ConversationStatus.open,
+        orginalIssuer: ConversationParty.parents,
+        isReadOther: false,
+        isReadParent: true,
+      );
+      final String endPoint =
+          '${_conversationsControllerName}InsertConversation';
+      log(endPoint);
+      final int? sendStatus = await HttpService.post(
+        url: endPoint,
+        body: conversation.toJson(),
+      );
+      if (sendStatus == null) {
+        throw Exception('Null Returned');
+      }
+      if (sendStatus == 0) {
+        throw Exception('Expected to get Message ID but got $sendStatus');
+      }
+      return right(true);
+    } catch (e) {
+      print(e);
+      return left('حدث خطأ اثناء انشاء المحادثة، حاول مرة أخرى');
     }
   }
 }

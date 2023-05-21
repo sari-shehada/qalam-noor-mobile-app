@@ -12,10 +12,10 @@ class SnackbarService extends GetxService {
     Get.showSnackbar(
       GetSnackBar(
         borderRadius: 15,
-        margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30),
+        margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
         // padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         icon: Row(
-          children: [
+          children: <Widget>[
             AddHorizontalSpacing(value: 20.w),
             FaIcon(
               FontAwesomeIcons.x,
@@ -35,24 +35,26 @@ class SnackbarService extends GetxService {
 
   static void showSuccessSnackBar(
       {required String title, required String message}) {
-    Get.showSnackbar(GetSnackBar(
-      borderRadius: 15,
-      margin: EdgeInsets.symmetric(
-          horizontal: Get.mediaQuery.size.width / 4 + 20.w, vertical: 30),
-      icon: Row(
-        children: [
-          AddHorizontalSpacing(value: 20.w),
-          const FaIcon(
-            FontAwesomeIcons.check,
-            color: Colors.white,
-          ),
-        ],
+    Get.showSnackbar(
+      GetSnackBar(
+        borderRadius: 15,
+        margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+        icon: Row(
+          children: <Widget>[
+            AddHorizontalSpacing(value: 20.w),
+            FaIcon(
+              FontAwesomeIcons.check,
+              color: Colors.white,
+              size: 15.sp,
+            ),
+          ],
+        ),
+        title: title,
+        message: message,
+        backgroundColor: Colors.green.shade400,
+        duration: const Duration(seconds: 2),
+        snackPosition: SnackPosition.TOP,
       ),
-      title: title,
-      message: message,
-      backgroundColor: Colors.green.shade400,
-      duration: const Duration(seconds: 2),
-      snackPosition: SnackPosition.TOP,
-    ));
+    );
   }
 }

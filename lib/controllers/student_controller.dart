@@ -9,14 +9,16 @@ class StudentController {
   String get _controllerName => 'studentController/';
 
   Future<List<Student>> getStudentsByFamilyId({int? familyId}) async {
-    final pickedFamilyID = familyId ?? GlobalParams.currentUser.id;
+    final int pickedFamilyID = familyId ?? GlobalParams.currentUser.id;
     final String endPoint =
         '${_controllerName}GetStudentsByFamilyId?familyId=$pickedFamilyID';
 
     return HttpService.getParsed<List<Student>, List<dynamic>>(
       url: endPoint,
-      dataMapper: (responseData) {
-        return responseData.map<Student>((e) => Student.fromMap(e)).toList();
+      dataMapper: (List<dynamic> responseData) {
+        return responseData
+            .map<Student>((e) => Student.fromMap(e as Map<String, dynamic>))
+            .toList();
       },
     );
   }
@@ -26,7 +28,7 @@ class StudentController {
 
     return HttpService.getParsed<Student, Map<String, dynamic>>(
       url: endPoint,
-      dataMapper: (responseData) {
+      dataMapper: (Map<String, dynamic> responseData) {
         return Student.fromMap(responseData);
       },
     );

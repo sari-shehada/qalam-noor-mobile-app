@@ -15,10 +15,10 @@ import '../../tools/ui_tools/custom_scaffold.dart';
 import '../chat_page/chat_page.dart';
 import '../chat_page/controllers/chat_page_controller.dart';
 
-class InboxPage1 extends StatelessWidget {
+class InboxPage extends StatelessWidget {
   static const String routeName = '/inboxPage';
 
-  const InboxPage1({super.key});
+  const InboxPage({super.key});
 
   @override
   Widget build(BuildContext context) {

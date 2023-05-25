@@ -6,8 +6,8 @@ import '../../../controllers/student_profile_controller.dart';
 import '../../../models/student_profile/student_profile.dart';
 import '../../../tools/dialogs_services/snack_bar_service.dart';
 
-class HomePageController extends GetxController {
-  HomePageController() {
+class ProfilePageController extends GetxController {
+  ProfilePageController() {
     getStudentProfileView();
   }
   RxBool isLoading = true.obs;

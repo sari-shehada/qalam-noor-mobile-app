@@ -20,6 +20,7 @@ class Wrapper extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           darkTheme: ThemesHelper.darkTheme,
           theme: ThemesHelper.lightTheme,
+          themeMode: ThemeMode.light,
           home: child,
           fallbackLocale: const Locale('ar'),
           locale: const Locale('ar'),

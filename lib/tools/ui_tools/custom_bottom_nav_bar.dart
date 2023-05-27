@@ -5,18 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
+
+  const CustomBottomNavigationBar({
+    required this.icons, required this.onIndexChanged, super.key,
+  });
   final List<IconData> icons;
   final void Function(int index) onIndexChanged;
 
-  const CustomBottomNavigationBar({
-    super.key,
-    required this.icons,
-    required this.onIndexChanged,
-  });
-
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CustomBottomNavigationBarController());
+    final CustomBottomNavigationBarController controller = Get.put(CustomBottomNavigationBarController());
     return Padding(
       padding: EdgeInsets.only(
         right: 20.w,
@@ -51,7 +49,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List.generate(
               icons.length,
-              (index) => SizedBox(
+              (int index) => SizedBox(
                 height: 45.h,
                 width: 60.h,
                 child: InkWell(

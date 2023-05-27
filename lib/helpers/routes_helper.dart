@@ -7,7 +7,7 @@ import '../views/student_list_page/student_list_page.dart';
 
 class RoutesHelper {
   const RoutesHelper();
-  static const instance = RoutesHelper();
+  static const RoutesHelper instance = RoutesHelper();
 
   List<GetPage<dynamic>> get routes => <GetPage<dynamic>>[
         GetPage(

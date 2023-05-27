@@ -4,12 +4,10 @@ import 'package:get/get.dart';
 
 class CustomDropDownButton<T> extends StatelessWidget {
   const CustomDropDownButton({
-    super.key,
+    required this.value, required this.items, super.key,
     this.backgroundColor,
-    required this.value,
     this.dropdownColor,
     this.textStyle,
-    required this.items,
     this.onChanged,
     this.isExpanded = false,
     this.isDense = true,

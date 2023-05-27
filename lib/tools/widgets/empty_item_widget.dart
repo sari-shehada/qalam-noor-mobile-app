@@ -6,9 +6,7 @@ import '../ui_tools/ui_tools.dart';
 
 class EmptyItemWidget extends StatelessWidget {
   const EmptyItemWidget({
-    super.key,
-    required this.itemName,
-    required this.iconData,
+    required this.itemName, required this.iconData, super.key,
     this.padding,
   });
 

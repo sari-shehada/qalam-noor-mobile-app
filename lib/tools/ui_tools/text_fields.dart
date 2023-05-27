@@ -6,9 +6,7 @@ import 'ui_tools.dart';
 
 class HintedTextField extends StatelessWidget {
   const HintedTextField({
-    super.key,
-    required this.hintText,
-    required this.controller,
+    required this.hintText, required this.controller, super.key,
     this.textAlign = TextAlign.start,
     this.fillColor,
     this.textColor = Colors.black, //TODO: Change later
@@ -72,9 +70,7 @@ class HintedTextField extends StatelessWidget {
 
 class LabeledTextField extends StatelessWidget {
   const LabeledTextField(
-      {super.key,
-      required this.controller,
-      required this.label,
+      {required this.controller, required this.label, super.key,
       this.titleColor,
       this.fillColor,
       this.validator,

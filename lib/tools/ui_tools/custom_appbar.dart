@@ -6,8 +6,7 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
-    super.key,
-    required this.title,
+    required this.title, super.key,
     this.backButtonEnabled = true,
     this.actions,
     this.isShadowed = true,

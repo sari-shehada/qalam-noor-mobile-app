@@ -3,13 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDownMenu<T> extends StatelessWidget {
   const CustomDropDownMenu({
-    super.key,
+    required this.dropdownMenuEntries, required this.onSelected, super.key,
     this.width = 750,
     this.initialSelection,
     this.controller,
     this.enabled = true,
-    required this.dropdownMenuEntries,
-    required this.onSelected,
   });
 
   final T? initialSelection;

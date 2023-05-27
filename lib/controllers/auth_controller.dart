@@ -8,7 +8,7 @@ import '../tools/logic_tools/network_service.dart';
 
 class AuthController {
   const AuthController();
-  static const instance = AuthController();
+  static const AuthController instance = AuthController();
   String get _controllerName => 'FamilyAuthenticationController/';
   Future<ItemOr<Family?, String>> loginUserByCredentials(
       {required String username, required String password}) async {

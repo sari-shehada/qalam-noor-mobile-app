@@ -36,8 +36,7 @@ class Student {
     required this.landLine,
     required this.addressId,
     required this.joinDate,
-    this.leaveDate,
-    required this.familyId,
+    required this.familyId, this.leaveDate,
   });
 
   Student copyWith({

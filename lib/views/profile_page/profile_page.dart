@@ -216,7 +216,7 @@ class ProfilePage extends StatelessWidget {
                                         '${controller.profileView.fatherFirstName} ${controller.profileView.grandFatherName} ${controller.profileView.lastName}',
                                     icon: Icons.person,
                                   ),
-                                  TextWithIconSubWidget(
+                                  const TextWithIconSubWidget(
                                     // text: controller
                                     //     .profileView.fatherPlaceOfBirth,
                                     icon: Icons.cake,
@@ -247,8 +247,7 @@ class ProfilePage extends StatelessWidget {
 
 class TextWithIconSubWidget extends StatelessWidget {
   const TextWithIconSubWidget({
-    Key? key,
-    required this.icon,
+    required this.icon, Key? key,
     this.text,
     this.date,
   }) : super(key: key);

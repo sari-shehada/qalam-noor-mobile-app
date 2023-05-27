@@ -34,7 +34,7 @@ class StudentListPageController extends GetxController {
     if (studentId == null) {
       return null;
     }
-    final Student studentFromList = myChildren.firstWhere((element) {
+    final Student studentFromList = myChildren.firstWhere((Student element) {
       return element.id == studentId;
     });
     selectedStudent.value = studentFromList;

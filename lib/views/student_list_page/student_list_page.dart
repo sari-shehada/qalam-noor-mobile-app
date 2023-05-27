@@ -19,7 +19,7 @@ class StudentListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(StudentListPageController());
+    final StudentListPageController controller = Get.put(StudentListPageController());
 
     return CustomScaffold(
       appBar: CustomAppBar(
@@ -73,7 +73,7 @@ class StudentListPage extends StatelessWidget {
                 }
                 return ListView.builder(
                   itemCount: controller.myChildren.length,
-                  itemBuilder: (context, index) => _StudentCard(
+                  itemBuilder: (BuildContext context, int index) => _StudentCard(
                     student: controller.myChildren[index],
                     controller: controller,
                   ),

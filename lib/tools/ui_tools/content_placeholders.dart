@@ -35,7 +35,7 @@ class TitlePlaceholder extends StatelessWidget {
         children: <Widget>[
           Container(
             width: width,
-            height: 12.0,
+            height: 12,
             color: Colors.white,
           ),
           SizedBox(height: 8.h),
@@ -65,7 +65,7 @@ class ContentPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
           Container(

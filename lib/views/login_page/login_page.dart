@@ -3,17 +3,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../tools/ui_tools/buttons.dart';
-import '../../tools/ui_tools/text_fields.dart';
-import 'controllers/login_page_controller.dart';
 
 import '../../helpers/assets_helper.dart';
+import '../../tools/ui_tools/buttons.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
+import '../../tools/ui_tools/text_fields.dart';
 import '../../tools/ui_tools/ui_tools.dart';
+import 'controllers/login_page_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  static const String routeName = '/loginPage';
   const LoginPage({super.key});
+  static const String routeName = '/loginPage';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AddVerticalSpacing(
               value: Platform.isIOS
@@ -51,7 +50,7 @@ class LoginPage extends StatelessWidget {
               label: 'اسم المستخدم',
               controller: controller.usernameTxtEditingCtrl,
               fillColor: const Color(0xFFBACCE2),
-              validator: (txt) {
+              validator: (String? txt) {
                 return 'test';
               },
             ),

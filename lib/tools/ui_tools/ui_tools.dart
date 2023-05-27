@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddVerticalSpacing extends StatelessWidget {
-  const AddVerticalSpacing({super.key, required this.value});
+  const AddVerticalSpacing({required this.value, super.key});
 
   final double value;
   @override
@@ -13,7 +13,7 @@ class AddVerticalSpacing extends StatelessWidget {
 }
 
 class AddHorizontalSpacing extends StatelessWidget {
-  const AddHorizontalSpacing({super.key, required this.value});
+  const AddHorizontalSpacing({required this.value, super.key});
 
   final double value;
   @override

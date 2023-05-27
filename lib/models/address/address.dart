@@ -12,8 +12,7 @@ class Address {
   const Address({
     required this.id,
     required this.name,
-    this.details,
-    required this.areaId,
+    required this.areaId, this.details,
   });
 
   Address copyWith({

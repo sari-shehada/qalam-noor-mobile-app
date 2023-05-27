@@ -13,7 +13,7 @@ class ChatBubble extends StatelessWidget {
     final DateTime messageSentTime =
         DateTime.fromMillisecondsSinceEpoch(int.parse(message.date) * 1000);
     final String sentTimeInString =
-        intl.DateFormat('dd/MM/yyyy \'الساعة\' HH:mm').format(messageSentTime);
+        intl.DateFormat("dd/MM/yyyy 'الساعة' HH:mm").format(messageSentTime);
 
     return Padding(
       padding: EdgeInsets.only(

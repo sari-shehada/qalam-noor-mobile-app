@@ -8,16 +8,14 @@ import '../../helpers/theme_helper.dart';
 
 class CustomFilledButton<T> extends StatelessWidget {
   const CustomFilledButton({
-    super.key,
+    required this.onTap, required this.child, super.key,
     this.labelColor,
-    required this.onTap,
     this.backgroundColor,
     this.height,
     this.width = double.infinity,
     this.buttonStatus,
     this.loadingColor = Colors.white,
     this.useShadow = true,
-    required this.child,
   });
 
   final Color? labelColor;
@@ -32,7 +30,7 @@ class CustomFilledButton<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shadow = [
+    final List<BoxShadow> shadow = [
       BoxShadow(
         offset: Offset(0.w, 4.h),
         blurRadius: 12.r,
@@ -142,14 +140,12 @@ enum CustomButtonStatus { enabled, disabled, processing }
 
 class CustomOutlinedButton<T> extends StatelessWidget {
   const CustomOutlinedButton({
-    super.key,
+    required this.onTap, required this.child, super.key,
     this.outlineColor,
-    required this.onTap,
     this.height,
     this.width = double.infinity,
     this.buttonStatus,
     this.useShadow = false,
-    required this.child,
     this.backgroundColor,
     this.outlineWidth,
   });
@@ -260,14 +256,12 @@ class CustomOutlinedButton<T> extends StatelessWidget {
 
 class CustomTintedButton<T> extends StatelessWidget {
   const CustomTintedButton({
-    super.key,
+    required this.onTap, required this.child, super.key,
     this.foregroundColor,
-    required this.onTap,
     this.height,
     this.width = double.infinity,
     this.buttonStatus,
     this.useShadow = false,
-    required this.child,
     this.backgroundColor,
   });
 

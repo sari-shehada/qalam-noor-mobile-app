@@ -16,9 +16,9 @@ import '../chat_page/chat_page.dart';
 import '../chat_page/controllers/chat_page_controller.dart';
 
 class InboxPage extends StatelessWidget {
-  static const String routeName = '/inboxPage';
 
   const InboxPage({super.key});
+  static const String routeName = '/inboxPage';
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +156,10 @@ class InboxPage extends StatelessWidget {
 }
 
 class _ConversationCard extends StatelessWidget {
-  final Conversation conversation;
   const _ConversationCard({
     required this.conversation,
   });
+  final Conversation conversation;
 
   @override
   Widget build(BuildContext context) {

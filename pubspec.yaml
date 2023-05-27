@@ -23,18 +23,18 @@ dependencies:
   fpdart: ^0.6.0
   get: ^4.6.5
   http: ^0.13.6
-  shared_preferences: ^2.1.1
-  loading_animation_widget: ^1.2.0+4
   intl: ^0.18.1
-  shimmer: ^3.0.0
+  loading_animation_widget: ^1.2.0+4
   lottie: ^2.3.2
+  shared_preferences: ^2.1.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   change_app_package_name: ^1.1.0
-  flutter_test:
-    sdk: flutter
   flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^2.0.1
+  flutter_test:
+    sdk: flutter
 
 flutter_launcher_icons:
   android: "launcher_icon"

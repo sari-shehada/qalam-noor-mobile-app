@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 
 abstract class HttpService {
   const HttpService();
-  static const String _baseUrl = 'https://qalamandnoor-001-site1.ftempurl.com/';
+  static const String _baseUrl =
+      'https://qalamnoorschool-001-site1.ftempurl.com/';
   static const Map<String, String> _headers = <String, String>{
     'accept': 'text/plain',
     'Content-Type': 'application/json'

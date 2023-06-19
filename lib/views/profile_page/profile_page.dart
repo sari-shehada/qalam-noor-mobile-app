@@ -10,6 +10,7 @@ import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
 import 'package:qalam_noor_parents/views/profile_page/controllers/profile_page_controller.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../helpers/misc_colors.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -24,9 +25,9 @@ class ProfilePage extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
-        colors: [
-          Theme.of(context).colorScheme.primary,
-          Theme.of(context).colorScheme.primary.withOpacity(.8),
+        colors: <Color>[
+          MiscColors.getMiscColor(4).withOpacity(.8),
+          MiscColors.getMiscColor(4),
         ],
       ),
       boxShadow: [
@@ -50,7 +51,6 @@ class ProfilePage extends StatelessWidget {
           if (controller.isLoading.value) {
             return const _ShimmerHomePage();
           }
-          // return const _ShimmerHomePage();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -216,10 +216,11 @@ class ProfilePage extends StatelessWidget {
                                         '${controller.profileView.fatherFirstName} ${controller.profileView.grandFatherName} ${controller.profileView.lastName}',
                                     icon: Icons.person,
                                   ),
-                                  const TextWithIconSubWidget(
-                                    // text: controller
-                                    //     .profileView.fatherPlaceOfBirth,
-                                    icon: Icons.cake,
+                                  TextWithIconSubWidget(
+                                    text: controller
+                                        .profileView.fatherPlaceOfBirth
+                                        .toString(),
+                                    icon: Icons.pin_drop,
                                   ),
                                   TextWithIconSubWidget(
                                     text: controller
@@ -247,7 +248,8 @@ class ProfilePage extends StatelessWidget {
 
 class TextWithIconSubWidget extends StatelessWidget {
   const TextWithIconSubWidget({
-    required this.icon, Key? key,
+    required this.icon,
+    Key? key,
     this.text,
     this.date,
   }) : super(key: key);

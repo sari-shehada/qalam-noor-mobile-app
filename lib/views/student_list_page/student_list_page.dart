@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../helpers/fonts_helper.dart';
+import '../../helpers/misc_colors.dart';
 import '../../helpers/shared_prefs_helper.dart';
 import '../../helpers/styles_helper.dart';
 import '../../models/agendas/student.dart';
@@ -19,7 +20,8 @@ class StudentListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final StudentListPageController controller = Get.put(StudentListPageController());
+    final StudentListPageController controller =
+        Get.put(StudentListPageController());
 
     return CustomScaffold(
       appBar: CustomAppBar(
@@ -73,7 +75,8 @@ class StudentListPage extends StatelessWidget {
                 }
                 return ListView.builder(
                   itemCount: controller.myChildren.length,
-                  itemBuilder: (BuildContext context, int index) => _StudentCard(
+                  itemBuilder: (BuildContext context, int index) =>
+                      _StudentCard(
                     student: controller.myChildren[index],
                     controller: controller,
                   ),
@@ -97,9 +100,9 @@ class StudentListPage extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withOpacity(.8),
+            colors: <Color>[
+              MiscColors.getMiscColor(4).withOpacity(.8),
+              MiscColors.getMiscColor(4),
             ],
           ),
           boxShadow: [

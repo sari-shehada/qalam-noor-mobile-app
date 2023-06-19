@@ -4,17 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+import '../../helpers/misc_colors.dart';
 
+class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({
-    required this.icons, required this.onIndexChanged, super.key,
+    required this.icons,
+    required this.onIndexChanged,
+    super.key,
   });
   final List<IconData> icons;
   final void Function(int index) onIndexChanged;
 
   @override
   Widget build(BuildContext context) {
-    final CustomBottomNavigationBarController controller = Get.put(CustomBottomNavigationBarController());
+    final CustomBottomNavigationBarController controller =
+        Get.put(CustomBottomNavigationBarController());
     return Padding(
       padding: EdgeInsets.only(
         right: 20.w,
@@ -28,9 +32,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.primary.withOpacity(.8),
+            colors: <Color>[
+              MiscColors.getMiscColor(4).withOpacity(.8),
+              MiscColors.getMiscColor(4),
             ],
           ),
           boxShadow: [
@@ -75,7 +79,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     child: Icon(
                       icons[index],
                       color: controller.index.value == index
-                          ? Theme.of(context).colorScheme.primary
+                          ? MiscColors.getMiscColor(4)
                           : Colors.white,
                     ),
                   ),

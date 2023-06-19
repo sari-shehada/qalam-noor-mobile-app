@@ -1,17 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../helpers/misc_colors.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
-    required this.title, super.key,
+    required this.title,
+    super.key,
     this.backButtonEnabled = true,
     this.actions,
     this.isShadowed = true,
     this.backgroundColor = Colors.white,
     this.titleColor,
+    this.statusBarBrightness,
   });
 
   final String title;
@@ -20,8 +25,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isShadowed;
   final Color backgroundColor;
   final Color? titleColor;
+  final Brightness? statusBarBrightness;
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      systemStatusBarContrastEnforced: Platform.isIOS,
+      statusBarColor: Platform.isIOS
+          ? null
+          : MiscColors.getMiscColor(4), // Set the status bar color
+      statusBarIconBrightness: Platform.isIOS ? null : Brightness.dark,
+    ));
     return SizedBox.expand(
       child: Container(
         decoration: BoxDecoration(
@@ -90,8 +104,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size(
-        double.infinity,
-        20.h + (Platform.isIOS ? Get.mediaQuery.viewPadding.top : 60.h),
-      );
+  Size get preferredSize => Size(double.infinity,
+      20.h + (Platform.isIOS ? Get.mediaQuery.viewPadding.top : 60.h));
 }

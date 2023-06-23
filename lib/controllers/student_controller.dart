@@ -1,4 +1,5 @@
 import '../models/agendas/student.dart';
+import '../models/student_profile/student_semester_score.dart';
 import '../shared/global_params.dart';
 import '../tools/logic_tools/network_service.dart';
 
@@ -32,5 +33,24 @@ class StudentController {
         return Student.fromMap(responseData);
       },
     );
+  }
+
+  Future<StudentSemesterScore> getStudentScores({
+    required int studentId,
+    required int schoolYearId,
+    required int semesterId,
+  }) async {
+    String url =
+        '${_controllerName}GetStudentSemesterScoreScoresBySchoolYearIdAndSemesterIdAndStudentId?semesterId=$semesterId&schoolYearId=$schoolYearId&studentId=$studentId';
+
+    StudentSemesterScore semester =
+        await HttpService.getParsed<StudentSemesterScore, Map<String, dynamic>>(
+      url: url,
+      dataMapper: (responseData) {
+        return StudentSemesterScore.fromMap(responseData);
+      },
+    );
+
+    return semester;
   }
 }

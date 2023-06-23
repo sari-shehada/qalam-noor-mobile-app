@@ -22,7 +22,9 @@ class HomePage extends StatelessWidget {
         begin: Alignment.topRight,
         end: Alignment.bottomLeft,
         colors: <Color>[
-          MiscColors.getMiscColor(6),
+          const Color(0xFF3b6cb9),
+          // MiscColors.getMiscColor(6),
+          // MiscColors.getMiscColor(4),
           MiscColors.getMiscColor(4),
         ],
       ),
@@ -35,25 +37,8 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
-    final BoxDecoration nonGradientDecoration = BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      gradient: LinearGradient(
-        begin: Alignment.topRight,
-        end: Alignment.bottomLeft,
-        colors: <Color>[
-          MiscColors.getMiscColor(6),
-          MiscColors.getMiscColor(4),
-        ],
-      ),
-      boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: Colors.black.withOpacity(.1),
-          spreadRadius: 1,
-          offset: const Offset(-1, 2),
-          blurRadius: 2,
-        ),
-      ],
-    );
+    final BoxDecoration nonGradientDecoration = gradientDecoration;
+
     const int lengthOfList = 20;
     return CustomScaffold(
       // backgroundColor: Theme.of(context).colorScheme.primary,
@@ -83,7 +68,7 @@ class HomePage extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              'العام الحالي هو: ${controller.isLoadingCurrentYear.value ? '...' : controller.schoolYear.name}',
+                              'العام الحالي هو: ${controller.isLoading.value ? '...' : controller.schoolYear.name}',
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -96,24 +81,28 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 AddVerticalSpacing(value: 10.h),
-                Container(
-                  decoration: gradientDecoration,
-                  width: double.infinity,
-                  height: 70.h,
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Text(
-                          'Txt',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(color: Colors.white),
+                Obx(
+                  () {
+                    return Container(
+                      decoration: gradientDecoration,
+                      width: double.infinity,
+                      height: 70.h,
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Text(
+                              'الفصل الحالي هو: ${controller.isLoading.value ? '...' : controller.semesters.last.name}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
                 AddVerticalSpacing(value: 10.h),
                 Expanded(

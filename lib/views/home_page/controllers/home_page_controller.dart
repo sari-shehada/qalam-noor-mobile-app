@@ -2,19 +2,37 @@ import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:qalam_noor_parents/controllers/conversation_controller.dart';
 import 'package:qalam_noor_parents/controllers/school_year_controller.dart';
+import 'package:qalam_noor_parents/controllers/semester_controller.dart';
+import 'package:qalam_noor_parents/controllers/student_controller.dart';
 import 'package:qalam_noor_parents/models/educational/school_year.dart';
 
+import '../../../models/educational/semester.dart';
+import '../../../models/student_profile/student_semester_score.dart';
+import '../../../shared/global_params.dart';
 import '../../../tools/dialogs_services/snack_bar_service.dart';
 
 class HomePageController extends GetxController {
   HomePageController() {
-    getCurrentSchoolYear();
+    initData();
   }
+  late List<Semester> semesters;
   late SchoolYear schoolYear;
-  RxBool isLoadingCurrentYear = true.obs;
+  late StudentSemesterScore studentSemesterScore;
+  RxBool isLoading = true.obs;
+
+  Future<void> initData() async {
+    isLoading.value = true;
+
+    await getCurrentSchoolYear();
+    await getSemesters(schoolYearId: schoolYear.id);
+    await getStudentScores(
+        schoolYearId: schoolYear.id,
+        semesterId: semesters.last.id,
+        studentId: GlobalParams.selectedStudent.id);
+    isLoading.value = false;
+  }
 
   FutureEither<SchoolYear> getCurrentSchoolYear() async {
-    isLoadingCurrentYear.value = true;
     final Either<String, SchoolYear> currentSchoolYearResult =
         await SchoolYearController.instance.getCurrentStudentYear();
 
@@ -24,13 +42,28 @@ class HomePageController extends GetxController {
           title: 'حدث خطأ',
           message: errorMessage,
         );
-        isLoadingCurrentYear.value = false;
       },
       (SchoolYear result) {
         schoolYear = result;
-        isLoadingCurrentYear.value = false;
       },
     );
     return currentSchoolYearResult;
+  }
+
+  Future<List<Semester>> getSemesters({required int schoolYearId}) async {
+    return semesters =
+        await SemestersDBHelper.instance.getSemestersInSchoolYear(schoolYearId);
+  }
+
+  Future<StudentSemesterScore> getStudentScores({
+    required int studentId,
+    required int schoolYearId,
+    required int semesterId,
+  }) async {
+    return studentSemesterScore = await StudentController.instance
+        .getStudentScores(
+            studentId: studentId,
+            schoolYearId: schoolYearId,
+            semesterId: semesterId);
   }
 }

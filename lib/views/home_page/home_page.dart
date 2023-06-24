@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:qalam_noor_parents/helpers/fonts_helper.dart';
 import 'package:qalam_noor_parents/helpers/misc_colors.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/custom_appbar.dart';
 import 'package:qalam_noor_parents/tools/ui_tools/ui_tools.dart';
 import 'package:qalam_noor_parents/views/home_page/controllers/home_page_controller.dart';
 
+import '../../models/student_profile/student_semester_grade.dart';
 import '../../tools/ui_tools/custom_scaffold.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,7 +42,6 @@ class HomePage extends StatelessWidget {
     );
     final BoxDecoration nonGradientDecoration = gradientDecoration;
 
-    const int lengthOfList = 20;
     return CustomScaffold(
       // backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: CustomAppBar(
@@ -115,77 +117,119 @@ class HomePage extends StatelessWidget {
                     child: Center(
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            'مواد الطالب الحالية',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(color: Colors.white),
-                          ),
-                          AddVerticalSpacing(value: 10.h),
-                          Expanded(
-                            child: Row(
+                          SizedBox(
+                            height: 30.h,
+                            child: Stack(
                               children: [
-                                Expanded(
-                                  child: ListView(
-                                    children: List.generate(
-                                      lengthOfList,
-                                      (int index) => Container(
-                                        height: 50.h,
-                                        padding: EdgeInsets.all(10.h),
-                                        margin: EdgeInsets.only(bottom: 5.h),
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: index == 0
-                                                ? Radius.circular(20.r)
-                                                : Radius.zero,
-                                            topRight: index == 0
-                                                ? Radius.circular(20.r)
-                                                : Radius.zero,
-                                            bottomRight:
-                                                index == lengthOfList - 1
-                                                    ? Radius.circular(20.r)
-                                                    : Radius.zero,
-                                            bottomLeft:
-                                                index == lengthOfList - 1
-                                                    ? Radius.circular(20.r)
-                                                    : Radius.zero,
-                                          ),
-                                          color: index % 2 == 0
-                                              ? Colors.white.withOpacity(.7)
-                                              : Colors.white.withOpacity(.3),
-                                        ),
-                                        child: Center(
-                                            child: Row(
-                                          children: <Widget>[
-                                            Expanded(
-                                              child: Center(
-                                                child: Text(
-                                                  'Subject Name',
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ),
-                                            ),
-                                            VerticalDivider(),
-                                            Expanded(
-                                              child: Center(
-                                                child: Text(
-                                                  'Subject Name',
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )),
-                                      ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      //TODO: Navigate to details page
+                                    },
+                                    icon: Icon(
+                                      Icons.more_horiz,
+                                      color: Colors.white,
+                                      size: 17.h,
                                     ),
+                                    tooltip: 'المزيد من التفاصيل',
+                                  ),
+                                ),
+                                Align(
+                                  child: Text(
+                                    'مواد الطالب الحالية',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(color: Colors.white),
                                   ),
                                 ),
                               ],
                             ),
+                          ),
+                          AddVerticalSpacing(value: 10.h),
+                          Expanded(
+                            child: Obx(() {
+                              if (controller.isLoading.value) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'جاري التحميل ..',
+                                      style: FontsHelper.bodyMedium()
+                                          .copyWith(color: Colors.white),
+                                    ),
+                                    AddVerticalSpacing(value: 20.h),
+                                    LoadingAnimationWidget.bouncingBall(
+                                      color: Colors.white,
+                                      size: 40.h,
+                                    ),
+                                  ],
+                                );
+                              }
+                              final List<StudentSemesterGrade>
+                                  studentSemesterGrades = controller
+                                      .studentSemesterScore
+                                      .studentSemesterGrades;
+                              return ListView.builder(
+                                itemCount: studentSemesterGrades.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    height: 40.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: index == 0
+                                            ? Radius.circular(20.r)
+                                            : Radius.zero,
+                                        topRight: index == 0
+                                            ? Radius.circular(20.r)
+                                            : Radius.zero,
+                                        bottomRight: index ==
+                                                studentSemesterGrades.length - 1
+                                            ? Radius.circular(20.r)
+                                            : Radius.zero,
+                                        bottomLeft: index ==
+                                                studentSemesterGrades.length - 1
+                                            ? Radius.circular(20.r)
+                                            : Radius.zero,
+                                      ),
+                                      color: index % 2 == 0
+                                          ? Colors.white.withOpacity(.7)
+                                          : Colors.white.withOpacity(.3),
+                                    ),
+                                    child: Center(
+                                        child: Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                              studentSemesterGrades[index]
+                                                  .courseName,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                        VerticalDivider(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                              .withOpacity(.4),
+                                        ),
+                                        Expanded(
+                                          child: Center(
+                                            child: Text(
+                                              '${studentSemesterGrades[index].teacher.firstName} ${studentSemesterGrades[index].teacher.lastName}',
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                  );
+                                },
+                              );
+                            }),
                           )
                         ],
                       ),

@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+
 import '../models/agendas/student.dart';
 import '../models/student_profile/student_semester_score.dart';
 import '../shared/global_params.dart';
@@ -35,22 +39,28 @@ class StudentController {
     );
   }
 
-  Future<StudentSemesterScore> getStudentScores({
+  Future<StudentSemesterScore?> getStudentScores({
     required int studentId,
     required int schoolYearId,
     required int semesterId,
   }) async {
-    String url =
+    final String url =
         '${_controllerName}GetStudentSemesterScoreScoresBySchoolYearIdAndSemesterIdAndStudentId?semesterId=$semesterId&schoolYearId=$schoolYearId&studentId=$studentId';
 
-    StudentSemesterScore semester =
-        await HttpService.getParsed<StudentSemesterScore, Map<String, dynamic>>(
-      url: url,
-      dataMapper: (responseData) {
-        return StudentSemesterScore.fromMap(responseData);
-      },
+    // final StudentSemesterScore? semester = await HttpService.getParsed<
+    //     StudentSemesterScore?, Map<String, dynamic>>(
+    //   url: url,
+    //   dataMapper: (responseData) {
+    //     print(responseData);
+    //     return StudentSemesterScore.fromMap(responseData);
+    //   },
+    // );
+    final http.Response data = await HttpService.getUnparsed(url);
+    if (data.body.trim().isEmpty) {
+      return null;
+    }
+    return StudentSemesterScore.fromMap(
+      jsonDecode(data.body),
     );
-
-    return semester;
   }
 }

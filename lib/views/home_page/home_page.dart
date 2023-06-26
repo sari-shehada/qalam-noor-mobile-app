@@ -123,17 +123,22 @@ class HomePage extends StatelessWidget {
                               children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      //TODO: Navigate to details page
-                                    },
-                                    icon: Icon(
-                                      Icons.more_horiz,
-                                      color: Colors.white,
-                                      size: 17.h,
-                                    ),
-                                    tooltip: 'المزيد من التفاصيل',
-                                  ),
+                                  child: Obx(() {
+                                    return AbsorbPointer(
+                                      absorbing: controller.isLoading.value,
+                                      child: IconButton(
+                                        onPressed: () async {
+                                          await controller.goToDetailsPage();
+                                        },
+                                        icon: Icon(
+                                          Icons.more_horiz,
+                                          color: Colors.white,
+                                          size: 17.h,
+                                        ),
+                                        tooltip: 'المزيد من التفاصيل',
+                                      ),
+                                    );
+                                  }),
                                 ),
                                 Align(
                                   child: Text(
@@ -167,9 +172,21 @@ class HomePage extends StatelessWidget {
                                   ],
                                 );
                               }
+                              if (controller.studentSemesterScore == null) {
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'الطالب لم يتم تسجيله في العام الدراسي الحالي',
+                                      style: FontsHelper.bodyMedium()
+                                          .copyWith(color: Colors.white),
+                                    ),
+                                  ],
+                                );
+                              }
                               final List<StudentSemesterGrade>
                                   studentSemesterGrades = controller
-                                      .studentSemesterScore
+                                      .studentSemesterScore!
                                       .studentSemesterGrades;
                               return ListView.builder(
                                 itemCount: studentSemesterGrades.length,

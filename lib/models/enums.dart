@@ -60,7 +60,6 @@ enum ExamType {
   verbal,
   homework,
   activity,
-  exam,
   firstExam,
   secondExam,
   finalExam,
@@ -70,8 +69,9 @@ Map<ExamType, String> examTypeAsString = {
   ExamType.verbal: 'شفهي',
   ExamType.homework: 'وظائف',
   ExamType.activity: 'نشاط',
-  ExamType.exam: 'مذاكرة',
-  ExamType.finalExam: 'اختبار الفصل',
+  ExamType.firstExam: 'امتحان أول',
+  ExamType.secondExam: 'امتحان ثاني',
+  ExamType.finalExam: 'امتحان نهائي',
 };
 
 enum SemesterType {

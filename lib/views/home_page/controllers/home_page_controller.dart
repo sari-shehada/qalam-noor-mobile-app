@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:qalam_noor_parents/controllers/conversation_controller.dart';
@@ -5,11 +7,13 @@ import 'package:qalam_noor_parents/controllers/school_year_controller.dart';
 import 'package:qalam_noor_parents/controllers/semester_controller.dart';
 import 'package:qalam_noor_parents/controllers/student_controller.dart';
 import 'package:qalam_noor_parents/models/educational/school_year.dart';
+import 'package:qalam_noor_parents/views/home_page/views/grades_details_page.dart';
 
 import '../../../models/educational/semester.dart';
 import '../../../models/student_profile/student_semester_score.dart';
 import '../../../shared/global_params.dart';
 import '../../../tools/dialogs_services/snack_bar_service.dart';
+import '../views/controllers/grades_details_page_controller.dart';
 
 class HomePageController extends GetxController {
   HomePageController() {
@@ -17,7 +21,7 @@ class HomePageController extends GetxController {
   }
   late List<Semester> semesters;
   late SchoolYear schoolYear;
-  late StudentSemesterScore studentSemesterScore;
+  late StudentSemesterScore? studentSemesterScore;
   RxBool isLoading = true.obs;
 
   Future<void> initData() async {
@@ -55,15 +59,33 @@ class HomePageController extends GetxController {
         await SemestersDBHelper.instance.getSemestersInSchoolYear(schoolYearId);
   }
 
-  Future<StudentSemesterScore> getStudentScores({
+  Future<StudentSemesterScore?> getStudentScores({
     required int studentId,
     required int schoolYearId,
     required int semesterId,
   }) async {
-    return studentSemesterScore = await StudentController.instance
-        .getStudentScores(
-            studentId: studentId,
-            schoolYearId: schoolYearId,
-            semesterId: semesterId);
+    log(semesterId.toString());
+    return studentSemesterScore =
+        await StudentController.instance.getStudentScores(
+      studentId: studentId,
+      schoolYearId: schoolYearId,
+      semesterId: semesterId,
+    );
+  }
+
+  Future<void> goToDetailsPage() async {
+    if (studentSemesterScore == null) return;
+    await Get.to<void>(
+      () => const GradesDetailsPage(),
+      binding: BindingsBuilder<GradesDetailsPageController>(
+        () {
+          Get.put(
+            GradesDetailsPageController(
+              studentSemesterScore: studentSemesterScore!,
+            ),
+          );
+        },
+      ),
+    );
   }
 }
